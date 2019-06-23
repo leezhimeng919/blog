@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.jpg?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.jpg?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.jpg?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/sagari-pinned-tab.jpg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.1',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献     RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到">
+<meta name="keywords" content="RSA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学RSA加密算法">
+<meta property="og:url" content="https://leezhimeng.com/blog/2019/06/16/重学RSA加密算法/index.html">
+<meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
+<meta property="og:description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献     RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-16T14:32:39.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学RSA加密算法">
+<meta name="twitter:description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献     RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://leezhimeng.com/blog/2019/06/16/重学RSA加密算法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>重学RSA加密算法 | Lee Jimmy's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lee Jimmy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">18</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">9</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">17</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://leezhimeng.com/blog/2019/06/16/重学RSA加密算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李智猛">
+      <meta itemprop="description" content="李智猛的个人博客">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee Jimmy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">重学RSA加密算法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-16 22:31:07 / 修改时间：22:32:39" itemprop="dateCreated datePublished" datetime="2019-06-16T22:31:07+08:00">2019-06-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术原理/" itemprop="url" rel="index"><span itemprop="name">技术原理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- MarkdownTOC -->
+
+<ul>
+<li><a href="#rsa%E5%8A%A0%E5%AF%86">RSA加密</a></li>
+<li><a href="#aes%E5%8A%A0%E5%AF%86">AES加密</a></li>
+<li><a href="#app%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E5%8A%A0%E5%AF%86%E7%AD%BE%E5%90%8Dtoken%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3%E7%89%88%E6%9C%AC">APP接口设计(加密/签名/TOKEN认证/接口版本)</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+
+<p><a id="rsa加密"></a></p>
+<h1 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h1><ul>
+<li>加密历史<ul>
+<li>对称加密算法<ul>
+<li>甲方选择某一种加密规则，对信息进行加密</li>
+<li>乙方使用同一规则，对信息进行解密</li>
+</ul>
+</li>
+<li>非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法)<ul>
+<li>乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。</li>
+<li>甲方获取乙方的公钥，然后用它对信息加密</li>
+<li>乙方得到加密后的信息，用私钥解密</li>
+</ul>
+</li>
+<li>RSA算法<ul>
+<li>最广为使用的非对称加密算法</li>
+<li>非常可靠，密钥越长，越难破解</li>
+<li>目前被破解的最长RSA密钥是768个二进制位。1024位的RSA密钥基本安全，2048位的密钥及其安全</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>互质关系<ul>
+<li>两个整数，除了1以为，没有其他公因子，我们就称这两个数是互质关系coprime。不是质数也可以构成互质关系<ul>
+<li>任何两个质数构成互质关系</li>
+<li>一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系</li>
+<li>两个数中较大的那个数是质数，则两者构成互质关系</li>
+<li>1和任何自然数构成互质关系(包括自身)</li>
+<li>任何大于1的整数，与比其小1的整数构成互质关系</li>
+<li>任何大于1的奇数，与比其小2的整数构成互质关系</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>欧拉函数<ul>
+<li>任何给定正整数n，在小于等于n的正整数之中，计算有多少与n构成互质关系的正整数</li>
+<li>如果n = 1，则 φ(1) = 1</li>
+<li>如果n是质数，则 φ(n) = n-1</li>
+<li>如果n是某质数p的若干次方，则φ(n) = p^k - p^(k-1)</li>
+<li>如果n可以分解成两个互质的整数之积，则φ(n) = φ(p1p2) = φ(p1)φ(p2)</li>
+</ul>
+</li>
+<li>欧拉定理<ul>
+<li>a ^ φ(n) = 1(mod n)<ul>
+<li>a和n是两个互质的正整数，a的φ(n)次方被n除的余数是1</li>
+</ul>
+</li>
+<li>费马小定理<ul>
+<li>n取质数p</li>
+<li>a ^ (p-1) = 1(mod p) </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>模反元素<ul>
+<li>ab = 1(mod n)</li>
+<li>如果两个正整数a和n互质，那么一定能找到整数b，是的ab-1被n整除，b就是a的模反元素</li>
+<li>如果b是a的模反元素，则b+kn(k为任意整数)都是a的模反元素</li>
+<li>a*a^φ(n-1) = 1(mod n)  所有a^φ(n-1)就是a的一个模反元素</li>
+</ul>
+</li>
+<li>密钥生成步骤<ul>
+<li>随机去两个不相等的质数p和q</li>
+<li>计算p和q的乘积n<ul>
+<li>n的长度就是密钥长度，n写成二进制一般是1024位，重要场合是2048位</li>
+</ul>
+</li>
+<li>计算n的欧拉函数φ(n) = (p - 1)(q -1)</li>
+<li>随机选择一个整数e，条件是1 &lt; e &lt; φ(n),且e与φ(n)互质<ul>
+<li>常常选择65537(2^16+1)</li>
+</ul>
+</li>
+<li>计算e对φ(n)的模反元素d</li>
+<li>将n和e封装成公钥(乘积，随机整数)，n和d封装成私钥(乘积，模反元素)</li>
+</ul>
+</li>
+<li>RSA算法的可靠性<ul>
+<li>共出现六个数字：p、q、n、φ(n)、e、d</li>
+<li>有无可能在已知公钥(n、e)的情况下推到出d<ul>
+<li>d需要e和φ(n)</li>
+<li>φ(n)需要p和q</li>
+<li>n = pq，需要将n因式分解</li>
+<li>所以要破解私钥就是要知道n是哪两个质数的乘积</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>加密和解密<ul>
+<li>m^e = c(mod n)<ul>
+<li>m是发送要加密的信息，m必须是整数，字符串可用ascii值或unicode值</li>
+<li>c是客户端发送给服务端用来解密的，需要求出</li>
+</ul>
+</li>
+<li>c^d = m(mod n)<ul>
+<li>通过私钥(n,d)和客户端发来的c，解出m</li>
+<li>公钥只能加密小于n的m，想加密大于n的整数有两种办法<ul>
+<li>长信息分割若干短信息，每段分别加密</li>
+<li>使用对称性加密算法(如DES,data encryption standard|AED,advanced encryption standard)加密传输的报文，再用RSA公钥将DES密钥加密</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a id="aes加密"></a></p>
+<h1 id="AES加密"><a href="#AES加密" class="headerlink" title="AES加密"></a>AES加密</h1><ul>
+<li>加密<ul>
+<li>base64_encode(mcrypt_encrypt($cipher, $key,$data, $mode,$iv));</li>
+</ul>
+</li>
+<li>解密<ul>
+<li>mcrypt_decrypt($cipher, $key, base64_decode($data), $mode, $iv);</li>
+</ul>
+</li>
+</ul>
+<p><a id="app接口设计加密签名token认证接口版本"></a></p>
+<h1 id="APP接口设计-加密-签名-TOKEN认证-接口版本"><a href="#APP接口设计-加密-签名-TOKEN认证-接口版本" class="headerlink" title="APP接口设计(加密/签名/TOKEN认证/接口版本)"></a>APP接口设计(加密/签名/TOKEN认证/接口版本)</h1><ul>
+<li>接口安全问题：<ul>
+<li>请求来源是否合法</li>
+<li>请求参数是否被篡改</li>
+<li>请求是唯一的(即同样的请求，只有一次会生效)</li>
+<li>数据传输的安全性</li>
+</ul>
+</li>
+<li>客户端请求流程<ul>
+<li>请求服务端，获取RSA公钥(rsaPublicKey)以及接口密钥(key)</li>
+<li>生成AES密钥(aesKey)</li>
+<li>定义Params参数[TOKEN,PLATFORM,VERSION,MONCESTR,TIMESTAMP]加密，得到加密后的数据(encryptParams)<ul>
+<li>Token用户登陆凭证</li>
+<li>Platform请求来源所属平台</li>
+<li>Version平台版本</li>
+<li>NonceStr随机字符串，用于验证请求是否重复</li>
+<li>Timestamp请求时间，用于验证请求是否超时</li>
+</ul>
+</li>
+<li>使用RSA公钥(rsaPublicKey) 对 AES密钥(aesKey)加密，得到加密后的AES密钥(encryptAesKey)</li>
+<li>将加密后的AES密钥作为HEADER参数之一，完整的HEADER参数：[KEY =&gt; encryptAesKey, VALUE =&gt; encryptParams]</li>
+<li>提取请求数据相关参数，拼接 接口密钥(key)生成签名，然后发送请求给服务端，等待响应</li>
+<li>收到服务端的响应后，使用请求时发送的AES密钥(aesKey)进行解密</li>
+</ul>
+</li>
+<li>服务器处理流程<ul>
+<li>响应客户端的请求，获取客户端传输过来的HEADER参数[KEY,VALUE]</li>
+<li>使用 RSA私钥(rsaPrivateKey)对加密后的 AES密钥(key)进行RSA解密，得到AES密钥(decryptKet)</li>
+<li>使用 解密后的AES密钥(decryptKey) 对 加密后的数据(VALUE) 进行AES解密, 得到解密后的JSON数据(decryptValue)</li>
+<li>对 解密后的JSON数据(decryptValue) 进行JSON解析</li>
+<li>若 解密后的AES密钥(decryptKey) 与 解密后的JSON数据(decryptValue) 不为空, 说明请求合法</li>
+<li>获取 请求时间(decryptKey[TIMESTAMP]) 与 服务端时间(serverTime), 判断时间差是否大于 请求有效时间(requestExpireTime), 若大于则说明请求已超时(无效)</li>
+<li>获取 随机字符串(decryptKey[NONCESTR]), 校验此记录是否存在 服务端的NONCESTR集合 内, 若存在则说明是重复请求(无效), 否则记录此NONCESTR, 并删除集合内超过 请求有效时间(requestExpireTime) 的NONCESTR (可以使用redis的expire, 新增nonce的同时设置它的超时失效时间)</li>
+<li>若当前请求需要验证用户是否登录, 则 用户登录凭证(decryptValue[TOKEN]) 不能为空, 并查询数据库, 判断 TOKEN 是否过期</li>
+<li>获取 请求数据(requestData), 使用 接口密钥(secretKey) 对请求数据验签</li>
+<li>返回数据时, 转为JSON格式后, 使用 解密后的AES密钥(decryptKey) 进行加密, 然后返回给客户端</li>
+</ul>
+</li>
+</ul>
+<p><a id="参考文献"></a></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="noopener">阮一峰-RSA算法原理</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>如果你觉得我的文章对你有帮助，你可以打赏我哦~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="李智猛 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RSA/" rel="tag"># RSA</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/16/重新认识数组/" rel="next" title="重新认识数组">
+                <i class="fa fa-chevron-left"></i> 重新认识数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/17/ARTS第2周/" rel="prev" title="ARTS第2周">
+                ARTS第2周 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+             <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="李智猛">
+            
+              <p class="site-author-name" itemprop="name">李智猛</p>
+              <div class="site-description motion-element" itemprop="description">李智猛的个人博客</div>
+          </a></div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/leezhimeng919/blog" title="GitHub &rarr; https://github.com/leezhimeng919/blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:jimmyli0919@163.com" title="E-Mail &rarr; mailto:jimmyli0919@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://leezhimeng.com/" title="https://leezhimeng.com/">jimmy_github</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA加密"><span class="nav-number">1.</span> <span class="nav-text">RSA加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AES加密"><span class="nav-number">2.</span> <span class="nav-text">AES加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#APP接口设计-加密-签名-TOKEN认证-接口版本"><span class="nav-number">3.</span> <span class="nav-text">APP接口设计(加密/签名/TOKEN认证/接口版本)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lzm</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
