@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://leezhimeng.com/images/holdon.jpg">
-<meta property="og:updated_time" content="2019-07-07T05:21:04.672Z">
+<meta property="og:updated_time" content="2019-07-07T09:54:00.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS-week4">
 <meta name="twitter:image" content="https://leezhimeng.com/images/holdon.jpg">
@@ -443,7 +443,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-07 13:21:04" itemprop="dateModified" datetime="2019-07-07T13:21:04+08:00">2019-07-07</time>
+                <time title="修改时间：2019-07-07 17:54:00" itemprop="dateModified" datetime="2019-07-07T17:54:00+08:00">2019-07-07</time>
               
             
           </span>
@@ -538,7 +538,120 @@
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>双指针，时间复杂度O(m+n),从后往前，从前往后的话由于返回值是nums1所以需要额外空间存储nums1原来的值</p>
 <h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> merge = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, m, nums2, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = m<span class="number">-1</span>, j = n<span class="number">-1</span>, len = m + n <span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span>(j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">if</span>(i &gt;= <span class="number">0</span> &amp;&amp; nums1[i] &gt; nums2[j])&#123;</span><br><span class="line">            nums1[len--] = nums1[i--]</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            nums1[len--] = nums2[j--]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">   </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="review"><a href="#review" class="headerlink" title="review"></a>review</h2><h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2>
+<h2 id="review"><a href="#review" class="headerlink" title="review"></a>review</h2><p>本周的review看的是《软技能——代码之外的生存之道》的生产力一篇</p>
+<ul>
+<li>一切始于专注<ul>
+<li>保持专注的关键在于强迫自己进入专注模式</li>
+<li>专注不是一个即插即用的开关，需要花时间进入专注状态，起初专注是被迫的，但是随着冲量的建立，推动你进入专注状态。你的目标是熬过前5-10分钟</li>
+<li>实践<ul>
+<li>想一想自己极度专注于工作的时候，是一种什么感觉(肯定爽啊)</li>
+<li>是什么令你进入这种专注模式？又是什么最终打破了你的专注？(不得不完成任务了/遇到困难了)</li>
+<li>选一项大概需要占用半个小时或更长的时间的任务，给这像任务分配一个完整的时间段，迫使自己只集中经历在这一项任务上，并记住专注的感觉</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>生产力提升计划</li>
+<li>番茄工作法<ul>
+<li>好处是量化自己的时间和任务，让自己能更好的专注以及更安心的放松</li>
+</ul>
+</li>
+<li>定额工作法</li>
+<li>对自己负责<ul>
+<li>培养对自己负责的精神，首先让自己的生活井然有序，创建自己的规则来管理自己的生活</li>
+<li>可以请别人来监督自己履行职责</li>
+</ul>
+</li>
+<li>要不要多任务并行<ul>
+<li>到任务导致效率低下的根本原因在于我们根本没有能力真正去践行多任务并行，所谓的并行只是在不断的切换任务</li>
+<li>批量处理可以在短时间完成的任务<ul>
+<li>处理邮件</li>
+<li>打电话</li>
+<li>修复bug</li>
+<li>开短会</li>
+</ul>
+</li>
+<li>真正的多任务并行<ul>
+<li>将需要费脑完成的任务和一项不费脑的任务组合起来</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>职业倦怠<ul>
+<li>为什么会产生倦怠<ul>
+<li>工作效率越高，从中体会到的愉悦感就越少</li>
+<li>当最初的兴趣和动力消退的时候，我们没有足够的成就去说服自己找回它们</li>
+</ul>
+</li>
+<li>如何穿过那堵墙<ul>
+<li>为自己设定一个时间表并坚决执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>时间是如何被浪费的<ul>
+<li>跟踪自己的时间找出最大头的时间杀手</li>
+<li>清楚哪些时间是可以买回来的</li>
+</ul>
+</li>
+<li>形成惯例的重要性<ul>
+<li>创建一个惯例，并细化惯例</li>
+</ul>
+</li>
+<li>培养习惯<ul>
+<li>成就我们的恰恰就是那些不断重复的事情</li>
+<li>惯例和习惯的区别：惯例是我们可以控制的，每天干些什么事情；习惯不受我们控制，是日积月累出来的</li>
+<li>习惯三要素：暗示、惯例、奖励<ul>
+<li>暗示是导致习惯被触发的某样东西，例如去电影院都想买爆米花(但不一定都买)</li>
+<li>惯例是你经常做的事情，例如写代码时的缩进</li>
+<li>奖励是让习惯真正保持下去的东西，例如游戏里的升级(满足感)</li>
+</ul>
+</li>
+<li>想想有助于激励你养成这一习惯的奖励</li>
+</ul>
+</li>
+<li>分解任务<ul>
+<li>为什么大型任务难<ul>
+<li>大型任务给人带来沉重的心理负担，面对大型任务时，我们倾向于花更多时间思考问题本身，而不是采取行动去解决问题。我们更倾向于选择阻力较小的路径，玩手机刷微博看起来就是更容易的路径，于是拖延随之而来</li>
+<li>任务越大越难明确定义，多个人会有不同的理解，达成一致得花一些时间并很难达成一致，并且仍然容易出错</li>
+<li>大型任务很难估算完成时间</li>
+</ul>
+</li>
+<li>分解任务</li>
+</ul>
+</li>
+<li>努力工作的价值、为什么逃避努力工作</li>
+<li>任何行动都比不采取行动好</li>
+</ul>
+<h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><p><a href="https://leezhimeng.com/2019/07/07/%E7%B2%BE%E9%80%9ACSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">精通CSS第三版学习笔记</a></p>
+<p>已完成：基础知识、添加样式、可见格式化盒模型、网页排版章节</p>
+<h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651232948&idx=1&sn=c578786806d20e185503abc3d85561c5&chksm=bd4943308a3eca263cffe4ee97d9f73094c2d44e56642dca4bf5570b2ae5f1ff7ba4d7f6bb50&mpshare=1&scene=1&srcid=&key=b1cacad4ce04991edd5dac172308d681c1c697036be0d946df12f3e47a1edd2779197ad78e8f609d32cfed414aecb2050d98e239efe4af68905bff7ff682d0a3f034892d3be1ab4dfd86fafc94ab55a4&ascene=1&uin=MTM2MjM0OTI4MA%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=fdKhIyC2H7ZtAmgXw5QbrCYPLpEFYTze8GP5UCRTnX6EqHOd6ZxaYPrPYf2cIYqi" target="_blank" rel="noopener">Chrome Devtools最佳实践</a></p>
+<ul>
+<li>调试运行时代码<ul>
+<li>断点<ul>
+<li>什么是断点</li>
+<li>如何设置断点</li>
+<li>临时取消断点</li>
+<li>执行错误时停止</li>
+<li>条件断点</li>
+</ul>
+</li>
+<li>单步执行代码<ul>
+<li>调过下一个函数调用</li>
+<li>进入下一个函数调用 </li>
+<li>退出函数调用</li>
+</ul>
+</li>
+<li>全局变量和即时输出</li>
+</ul>
+</li>
+<li>查看调用堆栈<ul>
+<li>Blackbox脚本用于展开堆栈</li>
+<li>监视表达式</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
