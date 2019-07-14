@@ -100,13 +100,14 @@
 
 
 
-  <meta property="og:type" content="article">
+  <meta name="keywords" content="stack,正则表达式,map">
+<meta property="og:type" content="article">
 <meta property="og:title" content="ARTS-week5">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/07/11/ARTS-week5/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://leezhimeng.com/images/holdon.jpg">
-<meta property="og:updated_time" content="2019-07-11T02:58:29.727Z">
+<meta property="og:updated_time" content="2019-07-14T14:37:43.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS-week5">
 <meta name="twitter:image" content="https://leezhimeng.com/images/holdon.jpg">
@@ -263,7 +264,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">27</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">31</span></a>
 
   </li>
         
@@ -301,7 +302,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">24</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
 
   </li>
 
@@ -425,12 +426,24 @@
                 
               
 
-              <time title="创建时间：2019-07-11 10:55:09 / 修改时间：10:58:29" itemprop="dateCreated datePublished" datetime="2019-07-11T10:55:09+08:00">2019-07-11</time>
+              <time title="创建时间：2019-07-11 10:55:09" itemprop="dateCreated datePublished" datetime="2019-07-11T10:55:09+08:00">2019-07-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-14 22:37:43" itemprop="dateModified" datetime="2019-07-14T22:37:43+08:00">2019-07-14</time>
               
             
           </span>
@@ -493,7 +506,17 @@
 <a id="more"></a>
 <ul>
 <li><a href="#clock-in-of-ARTS">clock in of ARTS</a><ul>
-<li><a href="#algorithm">algorithm</a></li>
+<li><a href="#algorithm">algorithm</a><ul>
+<li><a href="#leetcode%E9%A2%98%E7%9B%AE">leetcode题目</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a><ul>
+<li><a href="#%E6%80%9D%E8%B7%AF1">思路1</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81">实现代码</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF2">思路2</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1">实现代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#review">review</a></li>
 <li><a href="#tip">tip</a></li>
 <li><a href="#share">share</a><!--more-->
@@ -503,7 +526,25 @@
 </ul>
 </li>
 </ul>
-<h1 id="clock-in-of-ARTS"><a href="#clock-in-of-ARTS" class="headerlink" title="clock in of ARTS"></a>clock in of ARTS</h1><h2 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h2><h2 id="review"><a href="#review" class="headerlink" title="review"></a>review</h2><h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2>
+<h1 id="clock-in-of-ARTS"><a href="#clock-in-of-ARTS" class="headerlink" title="clock in of ARTS"></a>clock in of ARTS</h1><h2 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h2><h3 id="leetcode题目"><a href="#leetcode题目" class="headerlink" title="leetcode题目"></a>leetcode题目</h3><p><a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">有效的括号</a></p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。<br>有效字符串需满足：<br>左括号必须用相同类型的右括号闭合。<br>左括号必须以正确的顺序闭合。<br>注意空字符串可被认为是有效字符串。<br>示例 1:<br>输入: “()”<br>输出: true<br>示例 2:<br>输入: “()[]{}”<br>输出: true<br>示例 3:<br>输入: “(]”<br>输出: false<br>示例 4:<br>输入: “([)]”<br>输出: false<br>示例 5:<br>输入: “{[]}”<br>输出: true</p>
+<h4 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a>思路1</h4><blockquote>
+<p>使用栈的先进后出的特性，时间复杂度O(n):</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.创建一个存储右括号和左括号的键值对map</span><br><span class="line">2.将字符串一个字符一个字符的加入栈，当加入右括号的时候，跟这个栈的最后一个元素配对</span><br><span class="line">3.配对成功，移出栈尾元素，即和右括号配对的左括号，配对失败，反回false</span><br><span class="line">4.重复2.3步骤，直至字符串的每一个字符都做过判定进栈的操作</span><br><span class="line">5.检查栈元素，若栈空，则返回true，栈非空，则返回false</span><br></pre></td></tr></table></figure>
+
+<h4 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isVaild</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> stack = []</span><br><span class="line">    <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>( [ [ <span class="string">'&#125;'</span>, <span class="string">'&#123;'</span> ], [ <span class="string">']'</span>, <span class="string">'['</span> ], [ <span class="string">')'</span>, <span class="string">'('</span> ] ] )</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> str) &#123;</span><br><span class="line">        <span class="keyword">if</span>(map.has(str[i]))&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.get(str[i]) === stack[stack.length - <span class="number">1</span>]) &#123;</span><br><span class="line">                stack.pop()</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            stack.push(str[i])</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> str.length === <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">isValid(<span class="string">'&#123;&#123;[]&#125;&#125;'</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用String.replace(&apos;()&apos;, &apos;&apos;).replace(&apos;&#123;&#125;&apos;, &apos;&apos;).replace(&apos;[]&apos;, &apos;&apos;),直至没有消掉任何字符，时间复杂度取决于有意义的区域块有多少，比如说&apos;&#123;&#123;&#123;&#125;&#125;&#125;&apos;,有意义的区域块就是一，因为三组括号值括出了一块区域，&apos;&#123;&#125;&#123;&#125;&#123;&#125;&apos;，就有三个有意义的区域块，有意义的区域块越少，循环次数越大，&apos;&#123;&#123;&#123;&#125;&#125;&#125;&#125;&apos;就需要循环3次，时间复杂度是O(n^3),所以平均时间复杂度是O(n^a)</span><br></pre></td></tr></table></figure>
+
+<h4 id="实现代码-1"><a href="#实现代码-1" class="headerlink" title="实现代码"></a>实现代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isVaild</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        len = str.length</span><br><span class="line">        str = str.replace(<span class="string">'()'</span>, <span class="string">''</span>).replace(<span class="string">'&#123;&#125;'</span>, <span class="string">''</span>).replace(<span class="string">'[]'</span>, <span class="string">''</span>)</span><br><span class="line">    &#125;<span class="keyword">while</span>(len !== str.length)</span><br><span class="line">    <span class="keyword">return</span> str.length === <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="review"><a href="#review" class="headerlink" title="review"></a>review</h2><p><a href="https://web.shanbay-reading.com/reading/news/bumspn/share?content_id=164935&social_service=u&url_key=31b4fa874&content_type=news%3Aarticle&track_id=9afa0d3a-a641-11e9-bd64-00163e124371" target="_blank" rel="noopener">真·新赌神，AI首次在德州扑克上战胜人类职业玩家</a></p>
+<ul>
+<li>棋类的对局中会存在一个纳什均衡，只要一方打破纳什均衡，另一方基本上就稳赢了</li>
+<li>而德州扑克中不存在纳什均衡，存在勾心斗角和虚张声势，AI并不需要每一步都是最优解，相反会故意不走最优解进行虚张声势<h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2>自己总结的 <a href="https://leezhimeng.com/2019/07/11/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E5%85%A8/">JavaScript知识点大全</a>(待完善)<h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2><a href="https://juejin.im/post/59cc61176fb9a00a437b290b" target="_blank" rel="noopener">JavaScript 正则表达式迷你书</a>(未看完，下周继续)</li>
+</ul>
+
       
     </div>
 
@@ -547,6 +588,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/stack/" rel="tag"># stack</a>
+          
+            <a href="/tags/正则表达式/" rel="tag"># 正则表达式</a>
+          
+            <a href="/tags/map/" rel="tag"># map</a>
+          
+        </div>
       
 
       
@@ -662,7 +713,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -770,7 +821,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">27</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -844,7 +903,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#clock-in-of-ARTS"><span class="nav-number">1.</span> <span class="nav-text">clock in of ARTS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#review"><span class="nav-number">1.2.</span> <span class="nav-text">review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tip"><span class="nav-number">1.3.</span> <span class="nav-text">tip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#share"><span class="nav-number">1.4.</span> <span class="nav-text">share</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#clock-in-of-ARTS"><span class="nav-number">1.</span> <span class="nav-text">clock in of ARTS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode题目"><span class="nav-number">1.1.1.</span> <span class="nav-text">leetcode题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.1.2.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">思路1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代码"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路2"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">思路2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代码-1"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">实现代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#review"><span class="nav-number">1.2.</span> <span class="nav-text">review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tip"><span class="nav-number">1.3.</span> <span class="nav-text">tip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#share"><span class="nav-number">1.4.</span> <span class="nav-text">share</span></a></li></ol></li></ol></div>
             
 
           </div>
