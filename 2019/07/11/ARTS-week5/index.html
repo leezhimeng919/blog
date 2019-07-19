@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://leezhimeng.com/images/holdon.jpg">
-<meta property="og:updated_time" content="2019-07-14T14:37:43.541Z">
+<meta property="og:updated_time" content="2019-07-14T14:45:50.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS-week5">
 <meta name="twitter:image" content="https://leezhimeng.com/images/holdon.jpg">
@@ -302,7 +302,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">26</span></a>
 
   </li>
 
@@ -443,7 +443,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-14 22:37:43" itemprop="dateModified" datetime="2019-07-14T22:37:43+08:00">2019-07-14</time>
+                <time title="修改时间：2019-07-14 22:45:50" itemprop="dateModified" datetime="2019-07-14T22:45:50+08:00">2019-07-14</time>
               
             
           </span>
@@ -535,15 +535,17 @@
 
 <h4 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isVaild</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> stack = []</span><br><span class="line">    <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>( [ [ <span class="string">'&#125;'</span>, <span class="string">'&#123;'</span> ], [ <span class="string">']'</span>, <span class="string">'['</span> ], [ <span class="string">')'</span>, <span class="string">'('</span> ] ] )</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> str) &#123;</span><br><span class="line">        <span class="keyword">if</span>(map.has(str[i]))&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.get(str[i]) === stack[stack.length - <span class="number">1</span>]) &#123;</span><br><span class="line">                stack.pop()</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            stack.push(str[i])</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> str.length === <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">isValid(<span class="string">'&#123;&#123;[]&#125;&#125;'</span>)</span><br></pre></td></tr></table></figure>
 
-<h4 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用String.replace(&apos;()&apos;, &apos;&apos;).replace(&apos;&#123;&#125;&apos;, &apos;&apos;).replace(&apos;[]&apos;, &apos;&apos;),直至没有消掉任何字符，时间复杂度取决于有意义的区域块有多少，比如说&apos;&#123;&#123;&#123;&#125;&#125;&#125;&apos;,有意义的区域块就是一，因为三组括号值括出了一块区域，&apos;&#123;&#125;&#123;&#125;&#123;&#125;&apos;，就有三个有意义的区域块，有意义的区域块越少，循环次数越大，&apos;&#123;&#123;&#123;&#125;&#125;&#125;&#125;&apos;就需要循环3次，时间复杂度是O(n^3),所以平均时间复杂度是O(n^a)</span><br></pre></td></tr></table></figure>
+<h4 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用String.replace(&apos;()&apos;, &apos;&apos;).replace(&apos;&#123;&#125;&apos;, &apos;&apos;).replace(&apos;[]&apos;, &apos;&apos;),直至没有消掉任何字符，时间复杂度取决于有意义的区域块有多少，</span><br><span class="line">比如说&apos;&#123;&#123;&#123;&#125;&#125;&#125;&apos;,有意义的区域块就是一，因为三组括号值括出了一块区域，&apos;&#123;&#125;&#123;&#125;&#123;&#125;&apos;，就有三个有意义的区域块，有意义的区域块越少，循环次数越大，&apos;&#123;&#123;&#123;&#125;&#125;&#125;&#125;&apos;就需要循环3次，时间复杂度是O(n^3),所以平均时间复杂度是O(n^a)</span><br></pre></td></tr></table></figure>
 
 <h4 id="实现代码-1"><a href="#实现代码-1" class="headerlink" title="实现代码"></a>实现代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isVaild</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        len = str.length</span><br><span class="line">        str = str.replace(<span class="string">'()'</span>, <span class="string">''</span>).replace(<span class="string">'&#123;&#125;'</span>, <span class="string">''</span>).replace(<span class="string">'[]'</span>, <span class="string">''</span>)</span><br><span class="line">    &#125;<span class="keyword">while</span>(len !== str.length)</span><br><span class="line">    <span class="keyword">return</span> str.length === <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="review"><a href="#review" class="headerlink" title="review"></a>review</h2><p><a href="https://web.shanbay-reading.com/reading/news/bumspn/share?content_id=164935&social_service=u&url_key=31b4fa874&content_type=news%3Aarticle&track_id=9afa0d3a-a641-11e9-bd64-00163e124371" target="_blank" rel="noopener">真·新赌神，AI首次在德州扑克上战胜人类职业玩家</a></p>
 <ul>
 <li>棋类的对局中会存在一个纳什均衡，只要一方打破纳什均衡，另一方基本上就稳赢了</li>
-<li>而德州扑克中不存在纳什均衡，存在勾心斗角和虚张声势，AI并不需要每一步都是最优解，相反会故意不走最优解进行虚张声势<h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2>自己总结的 <a href="https://leezhimeng.com/2019/07/11/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E5%85%A8/">JavaScript知识点大全</a>(待完善)<h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2><a href="https://juejin.im/post/59cc61176fb9a00a437b290b" target="_blank" rel="noopener">JavaScript 正则表达式迷你书</a>(未看完，下周继续)</li>
+<li>而德州扑克中不存在纳什均衡，存在勾心斗角和虚张声势，AI并不需要每一步都是最优解，相反会故意不走最优解进行虚张声势</li>
 </ul>
+<h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><p>自己总结的 <a href="https://leezhimeng.com/2019/07/11/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E5%85%A8/">JavaScript知识点大全</a>(待完善)</p>
+<h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2><p><a href="https://juejin.im/post/59cc61176fb9a00a437b290b" target="_blank" rel="noopener">JavaScript 正则表达式迷你书</a>(未看完，下周继续)</p>
 
       
     </div>
@@ -713,7 +715,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
