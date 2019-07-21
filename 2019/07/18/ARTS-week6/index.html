@@ -100,17 +100,17 @@
 
 
 
-  <meta name="description" content="李智猛的个人博客">
+  <meta name="keywords" content="map,排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARTS-week6">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/07/18/ARTS-week6/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
-<meta property="og:description" content="李智猛的个人博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-18T00:45:26.644Z">
+<meta property="og:image" content="https://leezhimeng.com/images/holdon.jpg">
+<meta property="og:updated_time" content="2019-07-21T02:31:41.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS-week6">
-<meta name="twitter:description" content="李智猛的个人博客">
+<meta name="twitter:image" content="https://leezhimeng.com/images/holdon.jpg">
 
 
 
@@ -264,7 +264,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">31</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">34</span></a>
 
   </li>
         
@@ -302,7 +302,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">27</span></a>
 
   </li>
 
@@ -426,12 +426,24 @@
                 
               
 
-              <time title="创建时间：2019-07-18 08:45:10 / 修改时间：08:45:26" itemprop="dateCreated datePublished" datetime="2019-07-18T08:45:10+08:00">2019-07-18</time>
+              <time title="创建时间：2019-07-18 08:45:10" itemprop="dateCreated datePublished" datetime="2019-07-18T08:45:10+08:00">2019-07-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-21 10:31:41" itemprop="dateModified" datetime="2019-07-21T10:31:41+08:00">2019-07-21</time>
               
             
           </span>
@@ -490,7 +502,66 @@
       
 
       
-        
+        <p><img src="/images/holdon.jpg" alt></p>
+<a id="more"></a>
+<ul>
+<li><a href="#clock-in-of-ARTS">clock in of ARTS</a><ul>
+<li><a href="#algorithm">algorithm</a><ul>
+<li><a href="#%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D">有效的字母异位词</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80">方法一</a><ul>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C">方法二</a><ul>
+<li><a href="#%E6%80%9D%E8%B7%AF-1">思路</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0-1">实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#review">review</a></li>
+<li><a href="#tip">tip</a></li>
+<li><a href="#share">share</a><!--more-->
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="clock-in-of-ARTS"><a href="#clock-in-of-ARTS" class="headerlink" title="clock in of ARTS"></a>clock in of ARTS</h1><h2 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h2><h3 id="有效的字母异位词"><a href="#有效的字母异位词" class="headerlink" title="有效的字母异位词"></a>有效的字母异位词</h3><p><a href="https://leetcode-cn.com/problems/valid-anagram/" target="_blank" rel="noopener">有效的字母异位词</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。</span><br><span class="line">示例 1:</span><br><span class="line">输入: s = &quot;anagram&quot;, t = &quot;nagaram&quot;</span><br><span class="line">输出: true</span><br><span class="line">示例 2:</span><br><span class="line">输入: s = &quot;rat&quot;, t = &quot;car&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">排序法，时间复杂度O(nlogn)</span><br><span class="line"></span><br><span class="line">1.分别将两个字符串排序</span><br><span class="line">2.比较两个排序后的字符串</span><br></pre></td></tr></table></figure>
+
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">javascript中有Array.sort()，不传参数默认按首字母排序</span><br><span class="line">我们只需要将字符串按照每个字符一个元素的方式转换成数组，可以使用拓展运算符`...`</span><br><span class="line">将数组排完序后，将数组转回字符串，这里用到Array.join(&quot;&quot;)</span><br><span class="line">为什么不直接比较两个数组？因为JavaScript中两个完全一样的数组直接用`==`比较也会返回false，因为虽然内容一样，但是存储在两个不同内存空间的数组</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isVaildAnagram = <span class="function"><span class="keyword">function</span>(<span class="params">s, t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [...s].sort().join(<span class="string">""</span>) === [...t].sort().join(<span class="string">""</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">哈希法，时间复杂度O(n)</span><br><span class="line">1.将字符串转成 字母：次数 形式的map，例如&#123;&quot;a&quot; : 3, &quot;n&quot; : 1,...&#125;</span><br><span class="line">2.比较两个map是否相等</span><br></pre></td></tr></table></figure>
+
+<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">javascript中，使用map.set(key, value)、 map.has(key) 、map.get(key) 转成哈希表示</span><br><span class="line">比较两个map相等不能直接用`==`比较，首先看看两个map.size是否相同，</span><br><span class="line">如果同为0直接返回true，然后遍历map1中的每个键名，</span><br><span class="line">拿map1的中键看看map2中有没有相同的，若有并且值要相同则遍历完之后，全相同才是相同</span><br><span class="line"></span><br><span class="line">我这里使用了两个辅助函数：一个是将字符串按照我们想要的方式转成map，另一个是比较两个map是否键值相同。</span><br><span class="line">也就是下面的getMap()和compareTwoMap()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getMap(str) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> str !== <span class="string">"string"</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> str)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.has(i))&#123;</span><br><span class="line">            map.set(i, map.get(i) + <span class="number">1</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map.set(i, <span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> compareTwoMap(map1, map2) &#123;</span><br><span class="line">    <span class="keyword">if</span>(!(map1 <span class="keyword">instanceof</span> <span class="built_in">Map</span>) || !(map2 <span class="keyword">instanceof</span> <span class="built_in">Map</span>)) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        <span class="keyword">if</span>(map1.size !== map2.size) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">            <span class="comment">//如果两个都是空map，直接return true，不然到了下一轮i会为undefined</span></span><br><span class="line">        <span class="keyword">if</span>(map1.size === map2.size &amp;&amp; map1.size == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> map1.keys()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!(map2.has(i))) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">            <span class="keyword">if</span>(map1.get(i) !== map2.get(i)) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> isVaildAnagram = <span class="function"><span class="keyword">function</span> (<span class="params">s, t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> compareTwoMap(getMap(s), getMap(t))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="review"><a href="#review" class="headerlink" title="review"></a>review</h2><p><a href>人工智能帮助一对夫妇找回失踪18年的儿子</a></p>
+<ul>
+<li>夫妇提供了尽可能多的男孩失踪时的照片</li>
+<li>男孩失踪时只有3岁，被找回的时候21岁</li>
+<li>AI根据照片，生成了100条线索</li>
+<li>相关部门根据线索，找到了失踪男孩</li>
+</ul>
+<h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><p>继续分享 <a href="https://leezhimeng.com/2019/07/11/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%A7%E5%85%A8/">JavaScript知识点大全</a>(待完善)</p>
+<ul>
+<li>更新了 <ul>
+<li>深入理解ES6的迭代器和生成器</li>
+<li>js高程的Ajax</li>
+<li>js高程的事件</li>
+</ul>
+</li>
+</ul>
+<h2 id="share"><a href="#share" class="headerlink" title="share"></a>share</h2><p><a href="https://leezhimeng.com/2019/07/02/%E6%88%91%E8%AF%A5%E6%80%8E%E6%A0%B7%E8%AE%BE%E8%AE%A1%E6%88%91%E7%9A%84%E7%BD%91%E7%AB%99/">我该如何设计我的网站</a></p>
+
       
     </div>
 
@@ -535,6 +606,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/map/" rel="tag"># map</a>
+          
+            <a href="/tags/排序/" rel="tag"># 排序</a>
+          
+        </div>
+      
 
       
       
@@ -574,6 +653,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/20/JavaScript事件循环和任务队列到底是怎么回事/" rel="prev" title="JavaScript事件循环和任务队列到底是怎么回事">
+                JavaScript事件循环和任务队列到底是怎么回事 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -617,8 +700,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -636,7 +728,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -752,7 +844,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">31</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -815,6 +913,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#clock-in-of-ARTS"><span class="nav-number">1.</span> <span class="nav-text">clock in of ARTS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有效的字母异位词"><span class="nav-number">1.1.1.</span> <span class="nav-text">有效的字母异位词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.2.</span> <span class="nav-text">方法一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">1.1.3.</span> <span class="nav-text">方法二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-1"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-1"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#review"><span class="nav-number">1.2.</span> <span class="nav-text">review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tip"><span class="nav-number">1.3.</span> <span class="nav-text">tip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#share"><span class="nav-number">1.4.</span> <span class="nav-text">share</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
