@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献     RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到">
+  <meta name="description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献    RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到加">
 <meta name="keywords" content="RSA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重学RSA加密算法">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/06/16/重学RSA加密算法/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
-<meta property="og:description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献     RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到">
+<meta property="og:description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献    RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到加">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-16T14:32:39.006Z">
+<meta property="og:updated_time" content="2019-08-01T12:05:08.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重学RSA加密算法">
-<meta name="twitter:description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献     RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到">
+<meta name="twitter:description" content="RSA加密 AES加密 APP接口设计(加密/签名/TOKEN认证/接口版本) 参考文献    RSA加密 加密历史 对称加密算法 甲方选择某一种加密规则，对信息进行加密 乙方使用同一规则，对信息进行解密   非对称加密算法(Diffie-Hellman密钥交换算法、RSA算法) 乙方生成两把密钥(公钥和私钥)。公钥是公开的，私钥是保密的。 甲方获取乙方的公钥，然后用它对信息加密 乙方得到加">
 
 
 
@@ -427,12 +427,24 @@
                 
               
 
-              <time title="创建时间：2019-06-16 22:31:07 / 修改时间：22:32:39" itemprop="dateCreated datePublished" datetime="2019-06-16T22:31:07+08:00">2019-06-16</time>
+              <time title="创建时间：2019-06-16 22:31:07" itemprop="dateCreated datePublished" datetime="2019-06-16T22:31:07+08:00">2019-06-16</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-01 20:05:08" itemprop="dateModified" datetime="2019-08-01T20:05:08+08:00">2019-08-01</time>
               
             
           </span>
@@ -494,14 +506,13 @@
         <!-- MarkdownTOC -->
 
 <ul>
-<li><a href="#rsa%E5%8A%A0%E5%AF%86">RSA加密</a></li>
-<li><a href="#aes%E5%8A%A0%E5%AF%86">AES加密</a></li>
-<li><a href="#app%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E5%8A%A0%E5%AF%86%E7%AD%BE%E5%90%8Dtoken%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3%E7%89%88%E6%9C%AC">APP接口设计(加密/签名/TOKEN认证/接口版本)</a></li>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
+<li><a href="#rsa%e5%8a%a0%e5%af%86">RSA加密</a></li>
+<li><a href="#aes%e5%8a%a0%e5%af%86">AES加密</a></li>
+<li><a href="#app%e6%8e%a5%e5%8f%a3%e8%ae%be%e8%ae%a1%e5%8a%a0%e5%af%86%e7%ad%be%e5%90%8dtoken%e8%ae%a4%e8%af%81%e6%8e%a5%e5%8f%a3%e7%89%88%e6%9c%ac">APP接口设计(加密/签名/TOKEN认证/接口版本)</a></li>
+<li><a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae">参考文献</a></li>
 </ul>
 <!-- /MarkdownTOC -->
 
-<p><a id="rsa加密"></a></p>
 <h1 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h1><ul>
 <li>加密历史<ul>
 <li>对称加密算法<ul>
@@ -518,7 +529,7 @@
 <li>RSA算法<ul>
 <li>最广为使用的非对称加密算法</li>
 <li>非常可靠，密钥越长，越难破解</li>
-<li>目前被破解的最长RSA密钥是768个二进制位。1024位的RSA密钥基本安全，2048位的密钥及其安全</li>
+<li>目前被破解的最长RSA密钥是768个二进制位。1024位的RSA密钥基本安全，2048位的密钥极其安全</li>
 </ul>
 </li>
 </ul>
@@ -606,7 +617,6 @@
 </ul>
 </li>
 </ul>
-<p><a id="aes加密"></a></p>
 <h1 id="AES加密"><a href="#AES加密" class="headerlink" title="AES加密"></a>AES加密</h1><ul>
 <li>加密<ul>
 <li>base64_encode(mcrypt_encrypt($cipher, $key,$data, $mode,$iv));</li>
@@ -617,7 +627,6 @@
 </ul>
 </li>
 </ul>
-<p><a id="app接口设计加密签名token认证接口版本"></a></p>
 <h1 id="APP接口设计-加密-签名-TOKEN认证-接口版本"><a href="#APP接口设计-加密-签名-TOKEN认证-接口版本" class="headerlink" title="APP接口设计(加密/签名/TOKEN认证/接口版本)"></a>APP接口设计(加密/签名/TOKEN认证/接口版本)</h1><ul>
 <li>接口安全问题：<ul>
 <li>请求来源是否合法</li>
@@ -657,7 +666,6 @@
 </ul>
 </li>
 </ul>
-<p><a id="参考文献"></a></p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="noopener">阮一峰-RSA算法原理</a></p>
 
       
