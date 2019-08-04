@@ -100,17 +100,16 @@
 
 
 
-  <meta name="description" content="李智猛的个人博客">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="ARTS-week8">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/07/29/ARTS-week8/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
-<meta property="og:description" content="李智猛的个人博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-29T07:17:29.821Z">
+<meta property="og:image" content="https://leezhimeng.com/images/holdon.jpg">
+<meta property="og:updated_time" content="2019-08-04T08:44:31.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS-week8">
-<meta name="twitter:description" content="李智猛的个人博客">
+<meta name="twitter:image" content="https://leezhimeng.com/images/holdon.jpg">
 
 
 
@@ -264,7 +263,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">37</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
 
   </li>
         
@@ -302,7 +301,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">32</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">33</span></a>
 
   </li>
 
@@ -430,6 +429,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-04 16:44:31" itemprop="dateModified" datetime="2019-08-04T16:44:31+08:00">2019-08-04</time>
+              
+            
           </span>
 
           
@@ -468,7 +483,78 @@
       
 
       
-        
+        <p><img src="/images/holdon.jpg" alt></p>
+<a id="more"></a>
+
+
+<ul>
+<li><a href="#algorithm">algorithm</a><ul>
+<li><a href="#300%e6%9c%80%e9%95%bf%e4%b8%8a%e5%8d%87%e5%ad%90%e5%ba%8f%e5%88%97">300.最长上升子序列</a><ul>
+<li><a href="#%e8%a7%a3%e6%b3%95%e4%b8%80-%e6%9a%b4%e5%8a%9b%e6%b3%95">解法一 ：暴力法</a></li>
+<li><a href="#%e8%a7%a3%e6%b3%95%e4%ba%8c-%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92">解法二 ：动态规划</a></li>
+<li><a href="#%e8%a7%a3%e6%b3%95%e4%b8%89--%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be">解法三 ： 二分查找</a></li>
+<li><a href="#%e8%a1%a5%e5%85%85-%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be">补充 ：二分查找</a><ul>
+<li><a href="#%e6%ad%a3%e5%b8%b8%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be">正常二分查找</a></li>
+<li><a href="#%e6%8e%a2%e7%b4%a2%e5%b7%a6%e8%be%b9%e7%95%8c">探索左边界</a></li>
+<li><a href="#%e6%8e%a2%e7%b4%a2%e5%8f%b3%e8%be%b9%e7%95%8c">探索右边界</a></li>
+<li><a href="#%e6%90%9c%e7%b4%a2%e6%8f%92%e5%85%a5%e4%bd%8d%e7%bd%ae">搜索插入位置</a><h1 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h1><h2 id="300-最长上升子序列"><a href="#300-最长上升子序列" class="headerlink" title="300.最长上升子序列"></a>300.最长上升子序列</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/" target="_blank" rel="noopener">LeetCode地址</a></li>
+<li>题目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">给定一个无序的整数数组，找到其中最长上升子序列的长度。</span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: [10,9,2,5,3,7,101,18]</span><br><span class="line">输出: 4 </span><br><span class="line">解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">### 解法一 ：暴力法</span><br><span class="line">- 思路：求到所有上升子序列，找到其中长度最长的那个</span><br><span class="line">- 时间复杂度:O(2^n), 空间复杂度O(n^2)</span><br><span class="line"></span><br><span class="line">### 解法二 ：动态规划</span><br><span class="line">- 思路：</span><br><span class="line">  - 状态定义：dp[i]表示第i个元素之前的最长上升子序列长度</span><br><span class="line">  - 状态转移方程：dp[i] = max(dp[0], dp[1], dp[2], ... dp[i-1]) + 1</span><br><span class="line">    - 其中要求出dp[0]到dp[i-1]之间的最大值需要需要一次循环</span><br><span class="line">    - 记dp[k]为该最大值，dp[k] = max(dp[j], dp[i] + 1 )</span><br><span class="line">- 时间复杂度：O(n^2), 空间复杂度O(n)</span><br><span class="line">- 实现：</span><br><span class="line">  ```javascript</span><br><span class="line">  var lengthOfLIS = function(nums) &#123;</span><br><span class="line">      if(nums.length &lt; 2) return nums.length</span><br><span class="line">      let dp = new Array(nums.length).fill(1), max = 0</span><br><span class="line">      for(let i = 1 ; i &lt; nums.length ; i++) &#123;</span><br><span class="line">          for(let j = 0 ; j &lt; i ; j++) &#123;</span><br><span class="line">              if(nums[j] &lt; nums[i])</span><br><span class="line">              dp[i] = Math.max(dp[i], dp[j] + 1)</span><br><span class="line">          &#125;</span><br><span class="line">          max = Math.max(max, dp[i])</span><br><span class="line">      &#125;</span><br><span class="line">      return max</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="解法三-：-二分查找"><a href="#解法三-：-二分查找" class="headerlink" title="解法三 ： 二分查找"></a>解法三 ： 二分查找</h3><ul>
+<li>思路：<ul>
+<li>依次将每个元素插入一个数组，按照以下几点要求插入<ul>
+<li>如果加入的元素大于数组的最后一个元素，直接插入</li>
+<li>如果加入的元素小于数组的最后一个元素，把替换比该元素大的元素中最小的那个元素，这个过程用二分查找实现</li>
+</ul>
+</li>
+<li>二分查找<ul>
+<li>Math.floor(mid/2)</li>
+<li>后面详细分析一下二分查找</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>时间复杂度：O(nlogn)， 空间复杂度(n)</li>
+<li>实现<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">var</span> search_bin = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> left = <span class="number">0</span>, right = nums.length</span><br><span class="line">      <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">          <span class="keyword">let</span> mid = left + (right - left)/<span class="number">2</span></span><br><span class="line">          mid = <span class="built_in">Math</span>.floor(mid)</span><br><span class="line">          <span class="keyword">if</span>( target === nums[mid] ) &#123;</span><br><span class="line">              <span class="keyword">return</span> mid</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span> (target &lt; nums[mid]) &#123;</span><br><span class="line">              right = mid</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">              left = mid + <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> left</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lengthOfLIS = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = [nums[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span> ; i &lt; nums.length ; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i] &gt; arr[arr.length - <span class="number">1</span>])&#123;</span><br><span class="line">            arr.push(nums[i])</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[i] &lt; arr[arr.length - <span class="number">1</span>])&#123;</span><br><span class="line">            arr.splice(search_bin(arr, nums[i]), <span class="number">1</span>, nums[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最后求出来的arr并不是那一个长度最长的上升子序列，但长度是一样的</span></span><br><span class="line">    <span class="keyword">return</span> arr.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="补充-：二分查找"><a href="#补充-：二分查找" class="headerlink" title="补充 ：二分查找"></a>补充 ：二分查找</h3><ul>
+<li>思想：定义两个值作为边界，查看这个边界的中间值是否是target，不是的话就动态的修改边界，直至找到这个target</li>
+<li>时间复杂度O(logn),空间复杂度O(1)<h4 id="正常二分查找"><a href="#正常二分查找" class="headerlink" title="正常二分查找"></a>正常二分查找</h4></li>
+<li>找到返回下标，找不到返回-1<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> search_binary = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> right = nums.length<span class="comment">//或者nums.length-1</span></span><br><span class="line">    <span class="comment">//由于left和right初始化的是[0,nums.length)，所以循环停止于left === right</span></span><br><span class="line">    <span class="comment">//若right = nums.length - 1，则区间是[0,nums.length-1],可以用while(left &lt;= right)调出循环，循环停止条件是left === right + 1 </span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">        <span class="comment">//由于循环条件是left&lt;right，即所有区间都是左闭右开</span></span><br><span class="line">        <span class="keyword">const</span> mid = left + (right - left)/<span class="number">2</span> <span class="comment">//防止溢出，right+left可能过于大</span></span><br><span class="line">        mid = <span class="built_in">Math</span>.floor(mid)</span><br><span class="line">        <span class="keyword">if</span>(target === nums[mid]) &#123;</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (target &lt; nums[mid]) &#123;</span><br><span class="line">            right = mid</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="探索左边界"><a href="#探索左边界" class="headerlink" title="探索左边界"></a>探索左边界</h4><ul>
+<li>当目标数组为[1,2,2,2,3]时，用常规二分查找找2时永远只会找到下标为2的那个2，如果我想找下标为1的那个2或者下标为3的那个2，就需要探索边界了<ul>
+<li>输出的值表示nums中的元素比target小的个数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> search_bin_left = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> right = nums.length <span class="comment">//这里不能是nums.length-1</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">        <span class="comment">//左闭右开</span></span><br><span class="line">        <span class="keyword">let</span> mid = left + (right - left)/<span class="number">2</span></span><br><span class="line">          mid = <span class="built_in">Math</span>.floor(mid)</span><br><span class="line">          <span class="keyword">if</span>(target === nums[mid]) &#123;</span><br><span class="line">              <span class="comment">//因为我们要探索左边界，所以不急着返回，而是将右边界改为mid</span></span><br><span class="line">              right = mid</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target &lt; nums[mid]) &#123;</span><br><span class="line">              right = mid</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target &gt; nums[mid]) &#123;</span><br><span class="line">              left = mid + <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="探索右边界"><a href="#探索右边界" class="headerlink" title="探索右边界"></a>探索右边界</h4><ul>
+<li>输出的值表示nums中元素不比target大的个数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> search_bin_right = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> right = nums.length <span class="comment">//这里不能是nums.length-1</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">        <span class="comment">//左闭右开</span></span><br><span class="line">        <span class="keyword">let</span> mid = left + (right - left)/<span class="number">2</span></span><br><span class="line">          mid = <span class="built_in">Math</span>.floor(mid)</span><br><span class="line">          <span class="keyword">if</span>(target === nums[mid]) &#123;</span><br><span class="line">              <span class="comment">//因为我们要探索右边界，所以不急着返回，而是将左边界改为mid + 1</span></span><br><span class="line">              left = mid + <span class="number">1</span></span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target &lt; nums[mid]) &#123;</span><br><span class="line">              right = mid</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target &gt; nums[mid]) &#123;</span><br><span class="line">              left = mid + <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//因为左闭右开，right是取不到的，right-1才是我们需要的</span></span><br><span class="line">    <span class="keyword">return</span> right - <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="搜索插入位置"><a href="#搜索插入位置" class="headerlink" title="搜索插入位置"></a>搜索插入位置</h4><ul>
+<li><p>如果target在nums中，return下标，如果不在，ruturn插入的下标，让新数组还是有序的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> search_explore = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> right = nums.length <span class="comment">//这里不能是nums.length-1</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">        <span class="comment">//左闭右开</span></span><br><span class="line">        <span class="keyword">let</span> mid = left + (right - left)/<span class="number">2</span></span><br><span class="line">          mid = <span class="built_in">Math</span>.floor(mid)</span><br><span class="line">          <span class="keyword">if</span>(target === nums[mid]) &#123;</span><br><span class="line">              <span class="keyword">return</span> mid</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target &lt; nums[mid]) &#123;</span><br><span class="line">              right = mid</span><br><span class="line">          &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target &gt; nums[mid]) &#123;</span><br><span class="line">              left = mid + <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//此时left == right + 1，即插入位置</span></span><br><span class="line">    <span class="keyword">return</span> left</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="reviews"><a href="#reviews" class="headerlink" title="reviews"></a>reviews</h1><h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><h1 id="share"><a href="#share" class="headerlink" title="share"></a>share</h1></li>
+</ul>
+
       
     </div>
 
@@ -599,8 +685,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -618,7 +713,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -748,7 +843,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -811,6 +916,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#algorithm"><span class="nav-number">1.</span> <span class="nav-text">algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#300-最长上升子序列"><span class="nav-number">1.1.</span> <span class="nav-text">300.最长上升子序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解法三-：-二分查找"><span class="nav-number">1.1.1.</span> <span class="nav-text">解法三 ： 二分查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充-：二分查找"><span class="nav-number">1.1.2.</span> <span class="nav-text">补充 ：二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正常二分查找"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">正常二分查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#探索左边界"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">探索左边界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#探索右边界"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">探索右边界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索插入位置"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">搜索插入位置</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reviews"><span class="nav-number">2.</span> <span class="nav-text">reviews</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tips"><span class="nav-number">3.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#share"><span class="nav-number">4.</span> <span class="nav-text">share</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

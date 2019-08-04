@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.jpg?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.jpg?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.jpg?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/sagari-pinned-tab.jpg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.1',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="keywords" content="Class,extends,super,new.target,Symbol.species">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript中的类">
+<meta property="og:url" content="https://leezhimeng.com/blog/2019/08/04/javascript中的类/index.html">
+<meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://leezhimeng.com/images/ES6Class.png">
+<meta property="og:updated_time" content="2019-08-04T08:52:58.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript中的类">
+<meta name="twitter:image" content="https://leezhimeng.com/images/ES6Class.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://leezhimeng.com/blog/2019/08/04/javascript中的类/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>javascript中的类 | Lee Jimmy's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lee Jimmy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">11</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">33</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://leezhimeng.com/blog/2019/08/04/javascript中的类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李智猛">
+      <meta itemprop="description" content="李智猛的个人博客">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee Jimmy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javascript中的类
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-04 16:47:39 / 修改时间：16:52:58" itemprop="dateCreated datePublished" datetime="2019-08-04T16:47:39+08:00">2019-08-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/ES6Class.png" alt></p>
+<a id="more"></a>
+<ul>
+<li><a href="#9javascript%e4%b8%ad%e7%9a%84%e7%b1%bb">9.JavaScript中的类</a><ul>
+<li><a href="#es5%e4%b8%ad%e7%9a%84%e8%bf%91%e7%b1%bb%e7%bb%93%e6%9e%84">ES5中的近类结构</a></li>
+<li><a href="#%e7%b1%bb%e7%9a%84%e5%a3%b0%e6%98%8e">类的声明</a></li>
+<li><a href="#%e7%b1%bb%e8%a1%a8%e8%be%be%e5%bc%8f">类表达式</a></li>
+<li><a href="#%e4%bd%9c%e4%b8%ba%e4%b8%80%e7%ad%89%e5%85%ac%e6%b0%91%e7%9a%84%e7%b1%bb">作为一等公民的类</a></li>
+<li><a href="#%e8%ae%bf%e9%97%ae%e5%99%a8%e5%b1%9e%e6%80%a7">访问器属性</a></li>
+<li><a href="#%e5%8f%af%e8%ae%a1%e7%ae%97%e6%88%90%e5%91%98%e5%90%8d%e7%a7%b0">可计算成员名称</a></li>
+<li><a href="#%e7%94%9f%e6%88%90%e5%99%a8%e6%96%b9%e6%b3%95">生成器方法</a></li>
+<li><a href="#%e9%9d%99%e6%80%81%e6%88%90%e5%91%98">静态成员</a></li>
+<li><a href="#%e7%bb%a7%e6%89%bf%e4%b8%8e%e6%b4%be%e7%94%9f%e7%b1%bb">继承与派生类</a></li>
+<li><a href="#%e5%9c%a8%e7%b1%bb%e7%9a%84%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0%e4%b8%ad%e4%bd%bf%e7%94%a8newtarget">在类的构造函数中使用new.target</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="9-JavaScript中的类"><a href="#9-JavaScript中的类" class="headerlink" title="9.JavaScript中的类"></a>9.JavaScript中的类</h2><h3 id="ES5中的近类结构"><a href="#ES5中的近类结构" class="headerlink" title="ES5中的近类结构"></a>ES5中的近类结构</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">'jimmy'</span>)</span><br><span class="line">person.getName()<span class="comment">//jimmy</span></span><br><span class="line">person <span class="keyword">instanceof</span> Person <span class="comment">//true</span></span><br><span class="line">person <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h3><ul>
+<li>基本的类声明语法：class关键字，用来声明类。类声明时基于已有自定义类型声明的语法糖</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">//等价于Person构造函数</span></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//等价于Person.prototype.sayName</span></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> PersonClass(<span class="string">'jimmy'</span>)</span><br><span class="line">person.sayName()<span class="comment">//jimmy</span></span><br><span class="line"><span class="keyword">typeof</span> PersonClass <span class="comment">//function</span></span><br><span class="line"><span class="comment">//PersonClass.prototype只可读，因为类属性不可被赋予新值</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类语法和自定义类型的差异<ol>
+<li>提升：函数声明可以提升，类声明不能提升，与let类似</li>
+<li>严格模式：类声明中的代码运行在严格模式之下，无法强行让代码脱离严格模式执行</li>
+<li>可枚举方法：自定义类型中可通过Object.defindProperty()手动指定方法是否枚举(默认可枚举)，类中，所有方法都不可枚举</li>
+<li>构造函数<code>[[Construct]]</code>：所有类中都有一个[[Construct]]内部方法，只有有[[Construct]]的方法才能使用new</li>
+<li>new关键字：类的构造函数只能用new调用（new.target !== “undefined”）</li>
+<li>类名：类中修改类名会导致程序报错</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES6之前的语法实现class</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//6.外部可以修改类名，用函数表达式的方式将PersonType修改成了PersonType2</span></span><br><span class="line"><span class="keyword">let</span> PersonType2 = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>     <span class="comment">//2.严格模式</span></span><br><span class="line">    <span class="comment">//6.内部不可以修改类名，用const</span></span><br><span class="line">    <span class="keyword">const</span> PersonType = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//4.类中有一个构造函数的内部方法，只有有构造函数的方法才能使用new</span></span><br><span class="line">        <span class="comment">//5.构造函数只能使用new调用</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">new</span>.target === <span class="string">"undefined"</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"please use new"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(PersonType.prototype, <span class="string">"sayName"</span>, &#123;</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//5.sayName方法不能用new调用</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span>.target !== <span class="string">"undefined"</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"please dont use new"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//3.类中所有方法不可枚举</span></span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> PersonType</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="comment">//1.不能提升，同let拥有暂时性死区</span></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> PersonType2(<span class="string">"jimmy"</span>)</span><br><span class="line">person.sayName() <span class="comment">// jimmy</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES6 class关键字</span></span><br><span class="line"><span class="comment">//6.内部修改不了类名，外部可以</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        foo = <span class="string">"refoo"</span><span class="comment">//报错 assignment to constant variable</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo = <span class="string">"refoo"</span><span class="comment">//修改成功</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h3><ul>
+<li><p>基本类表达式语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> PersonType2 = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> PersonType2 <span class="comment">//function</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命名类表达式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//上述ES6之前语法实现的class等价于</span></span><br><span class="line"><span class="keyword">let</span> PersonType2 = <span class="class"><span class="keyword">class</span> <span class="title">PersonType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> PersonType <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">typeof</span> PersonType2 <span class="comment">//function</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="作为一等公民的类"><a href="#作为一等公民的类" class="headerlink" title="作为一等公民的类"></a>作为一等公民的类</h3><ul>
+<li>一等公民：能够传入函数，也能被当做值从函数返回，也可以被赋值给变量</li>
+<li>JavaScript函数是一等公民，ES6的class也被设计成一等公民<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类被当做参数传入函数,且被当做返回值返回</span></span><br><span class="line"><span class="keyword">let</span> createClass = <span class="function"><span class="keyword">function</span>(<span class="params">classDef, name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> classDef(name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = createClass(<span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="string">"jimmy"</span>)</span><br><span class="line"></span><br><span class="line">obj.sayName()<span class="comment">//jimmy</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//立即调用类</span></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="string">"jimmy"</span>)</span><br><span class="line">person.sayName()<span class="comment">//jimmy</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//将element元素的innerHTML方法委托给了类的html属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomHTMLElement</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(element) &#123;</span><br><span class="line">		<span class="keyword">this</span>.element = element</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//创建访问器属性html</span></span><br><span class="line">	<span class="keyword">get</span> html() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.element.innerHTML</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">set</span> html(value) &#123;</span><br><span class="line">		<span class="keyword">this</span>.element.innerHTML = value</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(CustomHTMLElement.prototype, <span class="string">"html"</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">"get"</span> <span class="keyword">in</span> descriptor <span class="comment">//true 'in'只要是实例或者属性都返回true</span></span><br><span class="line"><span class="string">"set"</span> <span class="keyword">in</span> descriptor <span class="comment">//true </span></span><br><span class="line">descriptor.enumberable <span class="comment">// false  类里面的方法都是不可枚举的</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//&lt;div id="visitor"&gt; 123 &lt;/div&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> node = <span class="keyword">new</span> CustomHTMLElement(<span class="built_in">document</span>.getElementById(<span class="string">"visitor"</span>))</span><br><span class="line">node.html <span class="comment">//123</span></span><br><span class="line">node.html = <span class="number">1234</span> <span class="comment">// &lt;div id="visitor"&gt;1234&lt;/div&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//用es6以前的方法实现上述类的访问器属性</span></span><br><span class="line"><span class="keyword">let</span> CustomHTMlElement = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//严格模式</span></span><br><span class="line"><span class="meta">    "use strict"</span></span><br><span class="line">    <span class="comment">//创建构造函数（1.内部不能修改类名，2.必须用new调用）</span></span><br><span class="line">    <span class="keyword">const</span> CustomHTMLElement = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//创建访问器属性（1.不可枚举）</span></span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(CustomHTMLElement.prototype, <span class="string">"html"</span>, &#123;</span><br><span class="line">        configurable: <span class="literal">true</span>,</span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        <span class="keyword">get</span>: function() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.element.innerHTML</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span>: function(value) &#123; </span><br><span class="line">            <span class="keyword">this</span>.element.innerHTML = value</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> CustomHTMLElement</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h3 id="可计算成员名称"><a href="#可计算成员名称" class="headerlink" title="可计算成员名称"></a>可计算成员名称</h3><ul>
+<li>同对象字面量：类方法和访问器属性也支持可计算名称<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> methodName = <span class="string">"say"</span></span><br><span class="line"><span class="keyword">let</span> visitorName = <span class="string">"html"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    [methodName + <span class="string">"Name"</span>]() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span> [visitorName]()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> [visitorName](value)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="生成器方法"><a href="#生成器方法" class="headerlink" title="生成器方法"></a>生成器方法</h3><ul>
+<li>如果类用来表示值的集合，可以用Symbol.iterator定义生成器的方法为它添加一个默认的迭代器</li>
+<li>这样的类的实例可直接用于for-of循环和展开运算符，但是不能直接使用next方法，因为他本身是个对象，可迭代的部分在对象内部的迭代器里面，想用next方法可以使用<code>instance[Symbol.iterator]().next()</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Collection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.items = []</span><br><span class="line">    &#125;</span><br><span class="line">    *[<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">        <span class="keyword">yield</span> *<span class="keyword">this</span>.items.values()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> collection = <span class="keyword">new</span> Collection()</span><br><span class="line">collection.items.push(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> x <span class="keyword">of</span> collection) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1 2 3</span></span><br><span class="line"><span class="built_in">console</span>.log(collection[<span class="built_in">Symbol</span>.iterator]().next())</span><br><span class="line"><span class="comment">//&#123;value: 1, done: false&#125;</span></span><br><span class="line">collection <span class="comment">// Collection &#123;items:[1,2,3]&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h3><ul>
+<li>静态成员指的是只有类本身有得属性和方法，不能实例化到实例身上</li>
+<li>static不能用于定义构造函数方法，相当于重写了构造函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//es6之前定义静态成员</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//静态方法</span></span><br><span class="line">Person.create = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Person(name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实例方法</span></span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//es6静态成员</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> create(name) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Person(name)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = Person.create(<span class="string">"jimmy"</span>)</span><br><span class="line">person.sayName()<span class="comment">//jimmy</span></span><br><span class="line">person.create()<span class="comment">//TypeError</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="继承与派生类"><a href="#继承与派生类" class="headerlink" title="继承与派生类"></a>继承与派生类</h3><ul>
+<li><p>继承</p>
+<ul>
+<li><p>ES6之前实现继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//es6之前实现继承</span></span><br><span class="line"><span class="comment">//父构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">length, width</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.length = length</span><br><span class="line">    <span class="keyword">this</span>.width = width</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在父构造函数的原型链中添加getArea方法</span></span><br><span class="line">Rectangle.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Square</span>(<span class="params">length, n</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//借用构造函数技术，也称为经典继承或者伪构造对象技术</span></span><br><span class="line">    <span class="comment">//这里把长和宽都赋值成了长</span></span><br><span class="line">    Rectangle.call(<span class="keyword">this</span>, length, length)</span><br><span class="line">    <span class="comment">//父构造函数没有的属性</span></span><br><span class="line">    <span class="keyword">this</span>.n = n</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//通过将父构造函数的实例赋值在子原型上实现继承</span></span><br><span class="line"><span class="comment">//Object.create是ES5的方法，返回一个实例</span></span><br><span class="line">Square.prototype = <span class="built_in">Object</span>.create(Rectangle.prototype, &#123;</span><br><span class="line">    <span class="comment">//把子构造函数接到父构造函数的原型链上</span></span><br><span class="line">    <span class="keyword">constructor</span>: &#123;</span><br><span class="line">        value: Square,</span><br><span class="line">        enumerable: <span class="literal">true</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//可以重写getArea方法</span></span><br><span class="line">    getArea: &#123;</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.length + <span class="keyword">this</span>.n</span><br><span class="line">        &#125;,</span><br><span class="line">        enumerable: <span class="literal">true</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//ES5之前，组合继承方法</span></span><br><span class="line">Square.prototype = <span class="keyword">new</span> Rectangle()</span><br><span class="line">Square.prototype.constructor = Square</span><br><span class="line">Square.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.length + <span class="keyword">this</span>.n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ES6增加了extends关键字和super方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="keyword">this</span>.length = length</span><br><span class="line">        <span class="keyword">this</span>.width = width</span><br><span class="line">    &#125;</span><br><span class="line">    getArea() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Square继承Rectangle</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="comment">//等价于Rectangle.call(this, length, length)</span></span><br><span class="line">        <span class="keyword">super</span>(length,length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>派生类：继承自其他类的类，子类就是父类的派生类，也可以说使用extends关键字声明的类</p>
+<ul>
+<li><p>派生类中如果不使用构造函数(即也没有写super())，则创建派生类实例时会自动调用super()并传入参数.</p>
+</li>
+<li><p>派生类中使用了构造函数，则必须使用super()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">      <span class="comment">//无构造函数</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//等价于</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">      <span class="keyword">constructor</span>(...args) &#123;</span><br><span class="line">          <span class="keyword">super</span>(...args)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">  - 关于super方法是注意事项</span></span><br><span class="line"><span class="string">    - 使用区域：只能在派生类的构造函数中使用</span></span><br><span class="line"><span class="string">    - 初始化this：在构造函数中访问this之前一定要调用super方法，它负责初始化this</span></span><br><span class="line"><span class="string">    - 不用super：让派生类的构造函数返回一个对象。但效果肯定就不是想要的效果了</span></span><br><span class="line"><span class="string">- 类方法遮蔽</span></span><br><span class="line"><span class="string">  - 即在派生类中重写基类的方法会覆盖并遮蔽基类方法</span></span><br><span class="line"><span class="string">  - 可以通过super.getArea()来调用基类的方法</span></span><br><span class="line"><span class="string">- 静态成员继承</span></span><br><span class="line"><span class="string">  - 用static在基类中定义的静态成员，会被继承到派生类上，仍然不能在实例中使用</span></span><br><span class="line"><span class="string">- 派生自表达式的类：即所谓的基类是传统风格的原型链和构造函数</span></span><br><span class="line"><span class="string">  - 只要表达式可以被解析为一个函数并具有[[construct]]属性和原型，就可以用extends进行派生 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  `</span><span class="string">``</span>javascript</span><br><span class="line">  <span class="comment">//ES5风格的构造函数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">length, width</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.length = length</span><br><span class="line">      <span class="keyword">this</span>.width = width</span><br><span class="line">  &#125;</span><br><span class="line">  Rectangle.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="comment">//Rectangle不是类，但具有[[construct]]和原型，所以Square可以通过extends继承它</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">      <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">          <span class="keyword">super</span>(length, length)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">  - extends强大的功能使得类可以继承自任意类型的表达式，但如果extends的表达式本身没有构造器属性，派生的类也不会有构造器属性，尝试为其创建实例会导致程序无法调用构造器属性而报错</span></span><br><span class="line"><span class="string">  `</span><span class="string">``</span>javascript</span><br><span class="line">   <span class="comment">//Rectangle是按ES5风格定义的构造函数</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">getBase</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> Rectangle</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="comment">//动态确定使用哪个基类</span></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">getBase</span>() </span>&#123;</span><br><span class="line">       <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">           <span class="keyword">super</span>(length, length)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//升级版，创建mixin</span></span><br><span class="line">   <span class="keyword">let</span> SerializableMixin = &#123;</span><br><span class="line">       serialize() &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(<span class="keyword">this</span>)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">let</span> AreaMixin = &#123;</span><br><span class="line">       getArea() &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="comment">//使用mixin替代传统继承方法，可以接受任意数量的mixin对象作为参数</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">...mixins</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> base = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">       <span class="built_in">Object</span>.assign(base.prototype, ...mixins)</span><br><span class="line">       <span class="keyword">return</span> base</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">mixin</span>(<span class="title">AreaMixin</span>, <span class="title">SerializableMixin</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">           <span class="keyword">super</span>()</span><br><span class="line">           <span class="keyword">this</span>.length = length</span><br><span class="line">           <span class="keyword">this</span>.width = length</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">- 内建对象的继承</span></span><br><span class="line"><span class="string">  - 通过继承的方式，创建特殊的内建对象</span></span><br><span class="line"><span class="string">    - ES5及早期版本：先通过派生类型创建this的值，再调用基类的构造函数。所以this的值先是指向MyArray实例，随后会被来自Array的其他属性所修饰</span></span><br><span class="line"><span class="string">    - ES6：先由基类创建this的值，然后派生类的构造函数再修改这个值</span></span><br><span class="line"><span class="string">  `</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MyArray</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//先创建this的值指向实例，再调用原生Array</span></span><br><span class="line">        <span class="built_in">Array</span>.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    MyArray.prototype = <span class="built_in">Object</span>.create(<span class="built_in">Array</span>.prototype, &#123;</span><br><span class="line">        <span class="keyword">constructor</span>: &#123;</span><br><span class="line">            value: MyArray</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">var</span> colors = <span class="keyword">new</span> MyArray()</span><br><span class="line">    colors[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    colors.length <span class="comment">// 0   此时的colors是一个MyArray的实例对象&#123;0:1&#125;</span></span><br><span class="line">    colors.push(<span class="number">1</span>)</span><br><span class="line">    colors.length <span class="comment">//1   此时的colors是一个数组[1]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//ES6</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> <span class="keyword">extends</span> <span class="title">Array</span>() </span>&#123;</span><br><span class="line">        <span class="comment">//内建对象的继承一般就不写构造器属性了，会自动生成</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> colors = <span class="keyword">new</span> MyArray()</span><br><span class="line">    colors[<span class="number">0</span>] = <span class="string">"red"</span></span><br><span class="line">    colors.length <span class="comment">// 1</span></span><br><span class="line">  <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">- Symbol.species属性</span></span><br><span class="line"><span class="string">  - 原本在内建对象中会返回实例自身的方法，在内建对象继承的派生类中同样也回返回派生类的实例</span></span><br><span class="line"><span class="string">  `</span><span class="string">``</span>javascript</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MyArray</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> items = <span class="keyword">new</span> MyArray(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">  subitems = items.slice(<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">  subitems <span class="keyword">instanceof</span> MyArray <span class="comment">//true</span></span><br><span class="line">  <span class="comment">//这一切是浏览器引擎通过Symbol.species属性实现的</span></span><br><span class="line">  <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">  - Symbol.species被用于定义返回函数的静态访问器属性。被返回的函数是一个构造函数。每当要在实例的方法中创建类的实例时必须使用这个构造函数</span></span><br><span class="line"><span class="string">    - 已经定义Symbol.species属性的内建类型有</span></span><br><span class="line"><span class="string">      - Array</span></span><br><span class="line"><span class="string">      - ArrayBuffer</span></span><br><span class="line"><span class="string">      - Map</span></span><br><span class="line"><span class="string">      - Promise</span></span><br><span class="line"><span class="string">      - RegExp</span></span><br><span class="line"><span class="string">      - Set</span></span><br><span class="line"><span class="string">      - Typed arrays</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    `</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="comment">//如果想修改这些默认行为可以继承的时候重写静态访问器属性</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyArray</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">get</span>[Symbol.species]() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Array</span></span><br><span class="line">            <span class="comment">//这样设置之后，MyArray实例的那些原本会返回自身类型的方法返回的类型都是Array了</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//内建类型使用species的原理</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">get</span> [Symbol.species]() &#123;</span><br><span class="line">            <span class="comment">//this就是构造函数，即Symbol.species总会返回构造函数</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//只有getter没有setter是因为不可以改变类的种类</span></span><br><span class="line">        <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">            <span class="keyword">this</span>.value = value</span><br><span class="line">        &#125;</span><br><span class="line">        clone() &#123;</span><br><span class="line">            <span class="comment">//this.constructor一般与[Symbol.species]连用</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">this</span>.constructor[<span class="built_in">Symbol</span>.species](<span class="keyword">this</span>.value)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyDerivedClass1</span> <span class="keyword">extends</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyDerivedClass2</span> <span class="keyword">extends</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">        <span class="comment">//可以通过这个方式来修改实例方法的返回值类型，但不会修改实例本身的类型</span></span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">get</span> [Symbol.species]() &#123;</span><br><span class="line">            <span class="keyword">return</span> MyClass</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> instance1 = <span class="keyword">new</span> MyDerivedClass1(<span class="string">"foo"</span>)</span><br><span class="line">    ,clone1 = instance1.clone()</span><br><span class="line">    ,instance2 = <span class="keyword">new</span> MyDerivedClass2(<span class="string">"bar"</span>)</span><br><span class="line">    ,clone2 = instance2.clone()</span><br><span class="line"></span><br><span class="line">    instance2 <span class="keyword">instanceof</span> MyDerivedClass2 <span class="comment">//true</span></span><br><span class="line">    clone <span class="keyword">instanceof</span> MyDerivedClass2 <span class="comment">//false  是MyClass类型</span></span><br><span class="line">    <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### 在类的构造函数中使用new.target</span></span><br><span class="line"><span class="string">- 在类的构造函数中的new.target永远不会是undefined，因为类必须通过new调用</span></span><br><span class="line"><span class="string">- 在类的构造函数中使用new.terget来确定类是如何被调用的，一般等于类的构造函数</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">new</span>.target === Rectangle)</span><br><span class="line">        <span class="keyword">this</span>.length = length</span><br><span class="line">        <span class="keyword">this</span>.width = width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Rectangle(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Square(<span class="number">3</span>) <span class="comment">//false 此时new.target === Square</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>创建抽象类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">new</span>.target === Shape)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Shape is a abstract class'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="keyword">super</span>()</span><br><span class="line">        <span class="keyword">this</span>.length = length</span><br><span class="line">        <span class="keyword">this</span>.width = width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> Shape() <span class="comment">// Error</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="keyword">new</span> Rectangle(<span class="number">3</span>, <span class="number">4</span>) </span><br><span class="line">y <span class="keyword">instanceof</span> Shape <span class="comment">// true</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>如果你觉得我的文章对你有帮助，你可以打赏我哦~</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="李智猛 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Class/" rel="tag"># Class</a>
+          
+            <a href="/tags/extends/" rel="tag"># extends</a>
+          
+            <a href="/tags/super/" rel="tag"># super</a>
+          
+            <a href="/tags/new-target/" rel="tag"># new.target</a>
+          
+            <a href="/tags/Symbol-species/" rel="tag"># Symbol.species</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/31/javascript的数据结构与算法/" rel="next" title="javascript的数据结构与算法">
+                <i class="fa fa-chevron-left"></i> javascript的数据结构与算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+             <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="李智猛">
+            
+              <p class="site-author-name" itemprop="name">李智猛</p>
+              <div class="site-description motion-element" itemprop="description">李智猛的个人博客</div>
+          </a></div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/leezhimeng919/blog" title="GitHub &rarr; https://github.com/leezhimeng919/blog" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:jimmyli0919@163.com" title="E-Mail &rarr; mailto:jimmyli0919@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://leezhimeng.com/" title="https://leezhimeng.com/">jimmy_github</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-JavaScript中的类"><span class="nav-number">1.</span> <span class="nav-text">9.JavaScript中的类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES5中的近类结构"><span class="nav-number">1.1.</span> <span class="nav-text">ES5中的近类结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的声明"><span class="nav-number">1.2.</span> <span class="nav-text">类的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类表达式"><span class="nav-number">1.3.</span> <span class="nav-text">类表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为一等公民的类"><span class="nav-number">1.4.</span> <span class="nav-text">作为一等公民的类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问器属性"><span class="nav-number">1.5.</span> <span class="nav-text">访问器属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可计算成员名称"><span class="nav-number">1.6.</span> <span class="nav-text">可计算成员名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器方法"><span class="nav-number">1.7.</span> <span class="nav-text">生成器方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态成员"><span class="nav-number">1.8.</span> <span class="nav-text">静态成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承与派生类"><span class="nav-number">1.9.</span> <span class="nav-text">继承与派生类</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lzm</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
