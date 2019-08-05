@@ -100,17 +100,18 @@
 
 
 
-  <meta name="description" content="数组栈队列链表集合字典和散列表树图">
+  <meta name="description" content="数组栈栈数据结构 创建栈  声明stack类 用数组来保存栈的元素 items = []   stack类应该有的方法 push(elements)添加一个或几个新元素到栈顶 items.push(elements)   pop()移除栈顶的元素，并返回被移除的元素 items.pop()   peek()返回栈顶的元素 items[items.length-1]   isEmpty()查看栈是否">
+<meta name="keywords" content="algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript的数据结构与算法">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/07/31/javascript的数据结构与算法/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
-<meta property="og:description" content="数组栈队列链表集合字典和散列表树图">
+<meta property="og:description" content="数组栈栈数据结构 创建栈  声明stack类 用数组来保存栈的元素 items = []   stack类应该有的方法 push(elements)添加一个或几个新元素到栈顶 items.push(elements)   pop()移除栈顶的元素，并返回被移除的元素 items.pop()   peek()返回栈顶的元素 items[items.length-1]   isEmpty()查看栈是否">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-31T12:34:15.648Z">
+<meta property="og:updated_time" content="2019-08-05T14:21:46.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript的数据结构与算法">
-<meta name="twitter:description" content="数组栈队列链表集合字典和散列表树图">
+<meta name="twitter:description" content="数组栈栈数据结构 创建栈  声明stack类 用数组来保存栈的元素 items = []   stack类应该有的方法 push(elements)添加一个或几个新元素到栈顶 items.push(elements)   pop()移除栈顶的元素，并返回被移除的元素 items.pop()   peek()返回栈顶的元素 items[items.length-1]   isEmpty()查看栈是否">
 
 
 
@@ -264,7 +265,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">44</span></a>
 
   </li>
         
@@ -283,7 +284,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">12</span></a>
 
   </li>
         
@@ -426,16 +427,46 @@
                 
               
 
-              <time title="创建时间：2019-07-31 20:28:51 / 修改时间：20:34:15" itemprop="dateCreated datePublished" datetime="2019-07-31T20:28:51+08:00">2019-07-31</time>
+              <time title="创建时间：2019-07-31 20:28:51" itemprop="dateCreated datePublished" datetime="2019-07-31T20:28:51+08:00">2019-07-31</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-05 22:21:46" itemprop="dateModified" datetime="2019-08-05T22:21:46+08:00">2019-08-05</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -472,7 +503,77 @@
       
 
       
-        <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h1 id="字典和散列表"><a href="#字典和散列表" class="headerlink" title="字典和散列表"></a>字典和散列表</h1><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1>
+        <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><h2 id="栈数据结构"><a href="#栈数据结构" class="headerlink" title="栈数据结构"></a>栈数据结构</h2><ul>
+<li><p>创建栈</p>
+<ul>
+<li>声明stack类</li>
+<li>用数组来保存栈的元素<ul>
+<li>items = []</li>
+</ul>
+</li>
+<li>stack类应该有的方法<ul>
+<li>push(elements)添加一个或几个新元素到栈顶<ul>
+<li>items.push(elements)</li>
+</ul>
+</li>
+<li>pop()移除栈顶的元素，并返回被移除的元素<ul>
+<li>items.pop()</li>
+</ul>
+</li>
+<li>peek()返回栈顶的元素<ul>
+<li>items[items.length-1]</li>
+</ul>
+</li>
+<li>isEmpty()查看栈是否为空，空为true，非空为false<ul>
+<li>items.length === 0</li>
+</ul>
+</li>
+<li>clear()移除栈中所有元素<ul>
+<li>items = []</li>
+</ul>
+</li>
+<li>size()返回栈里的元素个数<ul>
+<li>items.length<h2 id="ES6栈和stack类"><a href="#ES6栈和stack类" class="headerlink" title="ES6栈和stack类"></a>ES6栈和stack类</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用class类和数组实现stack类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.items = []</span><br><span class="line">    &#125;</span><br><span class="line">    push(elements) &#123;</span><br><span class="line">        <span class="keyword">this</span>.items.push(elements)</span><br><span class="line">    &#125;</span><br><span class="line">    pop() &#123;</span><br><span class="line">        <span class="keyword">this</span>.items.pop()</span><br><span class="line">    &#125;</span><br><span class="line">    peek() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items[items.length - <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    isEmpty() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items.length === <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    clear() &#123;</span><br><span class="line">        <span class="keyword">this</span>.items = []</span><br><span class="line">    &#125;</span><br><span class="line">    size() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//问题1：items暴露在外部作用域了。可以通过instance.items访问这个数组</span></span><br><span class="line"><span class="comment">//问题2：items仍然是数组，保有数组原生的方法，所以可能违反stack的机制从中间增删元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用Symbol解决类的私用变量问题</p>
+<pre><code class="javascript"><span class="keyword">let</span> _items = <span class="built_in">Symbol</span>()
+<span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>{
+  <span class="keyword">constructor</span>() {
+      <span class="keyword">this</span>[_items] = []
+  }
+  push(elements) {
+      <span class="keyword">this</span>[_items].push(elements)
+  }
+  pop() {
+      <span class="keyword">this</span>[_items].pop()
+  }
+  peek() {
+      <span class="keyword">return</span> <span class="keyword">this</span>[_items][items.length - <span class="number">1</span>]
+  }
+  isEmpty() {
+      <span class="keyword">return</span> <span class="keyword">this</span>[_items].length === <span class="number">0</span>
+  }
+  clear() {
+      <span class="keyword">this</span>[_items] = []
+  }
+  size() {
+      <span class="keyword">return</span> <span class="keyword">this</span>[_items].length
+  }
+}
+<span class="comment">//这个方法为什么能结果私有变量的问题？实际上创建了一个假的私有变量，可以通过instance[_items]方法访问这个数组，因为用户很难猜到这个名称，大部分浏览器有这么一个功能：在对象后面打个`.`就会跳出该对象的所有属性和方法可选项，用Symbol比直接this.items方法好的地方就是，Symbol不会作为可选项被跳出来，增大了用户访问的难度</span>
+<span class="comment">//还有一个不太好的原因是：Object.getOwnPropertySymbols(calssName)能够返回输入类中用到的所有Symbol</span>
+<span class="comment">//stack[object.getOwnPropertySymbols(stack)[0]] 就能访问这个数组了，这个方法还不用猜名称，稳定能够找到</span></code></pre>
+</li>
+</ul>
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><h2 id="队列数据结构"><a href="#队列数据结构" class="headerlink" title="队列数据结构"></a>队列数据结构</h2><h2 id="ES6队列和queue类"><a href="#ES6队列和queue类" class="headerlink" title="ES6队列和queue类"></a>ES6队列和queue类</h2><h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><h2 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h2><h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h1 id="字典和散列表"><a href="#字典和散列表" class="headerlink" title="字典和散列表"></a>字典和散列表</h1><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1>
       
     </div>
 
@@ -516,6 +617,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+        </div>
       
 
       
@@ -670,7 +777,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -771,7 +880,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">44</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -845,7 +958,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集合"><span class="nav-number">5.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典和散列表"><span class="nav-number">6.</span> <span class="nav-text">字典和散列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-number">7.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-number">8.</span> <span class="nav-text">图</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#栈数据结构"><span class="nav-number">2.1.</span> <span class="nav-text">栈数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6栈和stack类"><span class="nav-number">2.2.</span> <span class="nav-text">ES6栈和stack类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#队列数据结构"><span class="nav-number">3.1.</span> <span class="nav-text">队列数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6队列和queue类"><span class="nav-number">3.2.</span> <span class="nav-text">ES6队列和queue类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先队列"><span class="nav-number">3.3.</span> <span class="nav-text">优先队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环队列"><span class="nav-number">3.4.</span> <span class="nav-text">循环队列</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集合"><span class="nav-number">5.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典和散列表"><span class="nav-number">6.</span> <span class="nav-text">字典和散列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-number">7.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-number">8.</span> <span class="nav-text">图</span></a></li></ol></div>
             
 
           </div>
