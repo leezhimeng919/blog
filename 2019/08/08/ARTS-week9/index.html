@@ -100,17 +100,18 @@
 
 
 
-  <meta name="description" content="李智猛的个人博客">
+  <meta name="description" content="algorithmstack12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455//用Symbol方法实现私有属性let Stack = (function()&amp;#123;    const _items = Symbol()    class St">
+<meta name="keywords" content="stack,queue,priorityQueue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARTS-week9">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/08/08/ARTS-week9/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
-<meta property="og:description" content="李智猛的个人博客">
+<meta property="og:description" content="algorithmstack12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455//用Symbol方法实现私有属性let Stack = (function()&amp;#123;    const _items = Symbol()    class St">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-08T00:09:55.881Z">
+<meta property="og:updated_time" content="2019-08-11T13:59:57.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARTS-week9">
-<meta name="twitter:description" content="李智猛的个人博客">
+<meta name="twitter:description" content="algorithmstack12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455//用Symbol方法实现私有属性let Stack = (function()&amp;#123;    const _items = Symbol()    class St">
 
 
 
@@ -264,7 +265,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">44</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">46</span></a>
 
   </li>
         
@@ -430,8 +431,42 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-11 21:59:57" itemprop="dateModified" datetime="2019-08-11T21:59:57+08:00">2019-08-11</time>
+              
+            
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ARTS/" itemprop="url" rel="index"><span itemprop="name">ARTS</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -468,7 +503,23 @@
       
 
       
-        
+        <h1 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h1><h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用Symbol方法实现私有属性</span></span><br><span class="line"><span class="keyword">let</span> Stack = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> _items = <span class="built_in">Symbol</span>()</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123;</span><br><span class="line">            <span class="keyword">this</span>[_items] = []</span><br><span class="line">        &#125;</span><br><span class="line">        push(elements) &#123;</span><br><span class="line">            <span class="keyword">this</span>[_items].push(elements)</span><br><span class="line">        &#125;</span><br><span class="line">        pop() &#123;</span><br><span class="line">            <span class="keyword">this</span>[_items].pop()</span><br><span class="line">        &#125;</span><br><span class="line">        peek() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>[_items][items.length - <span class="number">1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        isEmpty() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>[_items].length === <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">        clear() &#123;</span><br><span class="line">            <span class="keyword">this</span>[_items] = []</span><br><span class="line">        &#125;</span><br><span class="line">        size() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>[_items].length</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="comment">//用WeakMap实现私有属性</span></span><br><span class="line"><span class="keyword">let</span> Stack2 = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> items = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Stack2</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123;</span><br><span class="line">            items.set(<span class="keyword">this</span>, [])</span><br><span class="line">        &#125;</span><br><span class="line">        push(elements) &#123;</span><br><span class="line">            items.get(<span class="keyword">this</span>).push(elements)</span><br><span class="line">        &#125;</span><br><span class="line">        pop() &#123;</span><br><span class="line">            items.get(<span class="keyword">this</span>).pop()</span><br><span class="line">        &#125;</span><br><span class="line">        peek() &#123;</span><br><span class="line">            <span class="keyword">return</span> items.get(<span class="keyword">this</span>)[items.length - <span class="number">1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        isEmpty() &#123;</span><br><span class="line">            <span class="keyword">return</span> items.get(<span class="keyword">this</span>).length === <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">        clear() &#123;</span><br><span class="line">            items.get(<span class="keyword">this</span>) = []</span><br><span class="line">        &#125;</span><br><span class="line">        size() &#123;</span><br><span class="line">            <span class="keyword">return</span> items.get(<span class="keyword">this</span>).length</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h2 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用WeakMap实现私有属性</span></span><br><span class="line"><span class="keyword">let</span> Queue = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> items = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123;</span><br><span class="line">            items.set(<span class="keyword">this</span>, [])</span><br><span class="line">        &#125;</span><br><span class="line">        enqueue(elements) &#123;</span><br><span class="line">            items.get(<span class="keyword">this</span>).push(elements)</span><br><span class="line">        &#125;</span><br><span class="line">        dequeue() &#123;</span><br><span class="line">            items.get(<span class="keyword">this</span>).shift()</span><br><span class="line">        &#125;</span><br><span class="line">        front() &#123;</span><br><span class="line">            <span class="keyword">return</span> items.get(<span class="keyword">this</span>)[<span class="number">0</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        isEmpty() &#123;</span><br><span class="line">            <span class="keyword">return</span> items.get(<span class="keyword">this</span>).length === <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">        clear() &#123;</span><br><span class="line">            items.get(<span class="keyword">this</span>) = []</span><br><span class="line">        &#125;</span><br><span class="line">        size() &#123;</span><br><span class="line">            <span class="keyword">return</span> items.get(<span class="keyword">this</span>).length</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h2 id="priorityQueue"><a href="#priorityQueue" class="headerlink" title="priorityQueue"></a>priorityQueue</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueueElement</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(value, priority) &#123;</span><br><span class="line">		<span class="keyword">this</span>.vaule = value</span><br><span class="line">		<span class="keyword">this</span>.priority = priority</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> PriorityQueue = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> items = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">PriorityQueue</span> </span>&#123;</span><br><span class="line">		<span class="keyword">constructor</span>() &#123;</span><br><span class="line">			items.set(<span class="keyword">this</span>, [])</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		enqueue(value, priority) &#123;</span><br><span class="line">			<span class="keyword">const</span> newElement = <span class="keyword">new</span> QueueElement(value, priority)</span><br><span class="line">			<span class="keyword">let</span> itemsArray = items.get(<span class="keyword">this</span>)</span><br><span class="line">			<span class="keyword">let</span> added = <span class="literal">false</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; itemsArray.length ; i++) &#123;</span><br><span class="line">				<span class="comment">//最大优先队列：priority越大，优先级越高。若要改成最小优先队列这里改成&lt;</span></span><br><span class="line">				<span class="keyword">if</span>(newElement.priority &gt; itemsArray[i].priority) &#123;</span><br><span class="line">					itemsArray.splice(i, <span class="number">0</span>, newElement)</span><br><span class="line">					added = <span class="literal">true</span></span><br><span class="line">					<span class="keyword">break</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(!added) &#123;</span><br><span class="line">				itemsArray.push(newElement)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		printItems() &#123;</span><br><span class="line">			<span class="keyword">return</span> items.get(<span class="keyword">this</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> PriorityQueue</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> priorityQueue = <span class="keyword">new</span> PriorityQueue()</span><br><span class="line">priorityQueue.enqueue(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">priorityQueue.enqueue(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">priorityQueue.enqueue(<span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line">priorityQueue.enqueue(<span class="number">4</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(priorityQueue.printItems())</span><br></pre></td></tr></table></figure>
+
+<h1 id="reviews"><a href="#reviews" class="headerlink" title="reviews"></a>reviews</h1><p><a href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md" target="_blank" rel="noopener">正则表达式</a></p>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>如何将 Pull Request 用在 Fork 工作流中</p>
+<ul>
+<li>1.fork一个仓库</li>
+<li>2.clone下来</li>
+<li>3.checkout一个分支，修改后，push</li>
+<li>4.创建pull request</li>
+<li>5.维护者审查pr，merge</li>
+<li>6.维护者接受pr<h1 id="share"><a href="#share" class="headerlink" title="share"></a>share</h1><a href="https://juejin.im/post/5bfe05505188252098022400" target="_blank" rel="noopener">犽羽 ES6 完全使用手册</a></li>
+</ul>
+
       
     </div>
 
@@ -512,6 +563,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/stack/" rel="tag"># stack</a>
+          
+            <a href="/tags/queue/" rel="tag"># queue</a>
+          
+            <a href="/tags/priorityQueue/" rel="tag"># priorityQueue</a>
+          
+        </div>
       
 
       
@@ -595,8 +656,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -760,7 +830,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">44</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -823,6 +897,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#algorithm"><span class="nav-number">1.</span> <span class="nav-text">algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#stack"><span class="nav-number">1.1.</span> <span class="nav-text">stack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#queue"><span class="nav-number">1.2.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#priorityQueue"><span class="nav-number">1.3.</span> <span class="nav-text">priorityQueue</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reviews"><span class="nav-number">2.</span> <span class="nav-text">reviews</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tips"><span class="nav-number">3.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#share"><span class="nav-number">4.</span> <span class="nav-text">share</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
