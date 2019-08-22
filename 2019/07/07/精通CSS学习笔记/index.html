@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="基础知识组织代码 可维护性  为将来的修改做过优化   HTML简史  CSS的初衷是把跟HTML混在一起的表现性标记提取出来，达到结构与表现层分离的目的 CSS给开发人员带来的好处 专用于控制视觉样式和布局的语言 同一网站中的样式有更高的复用率 关注点分离得到良好的代码结构 关注点分离：分成小块，松散结合。模块化     CSS版本 CSS1在1996年底成为W3C推荐标准，只包含字体、颜色、外">
+  <meta name="description" content="基础知识  组织代码 创建结构化、语义化富HTML   添加样式  可见格式化模型  网页排版  漂亮的盒子  背景颜色 背景图片 背景图片语法 多重背景 边框与圆角 盒阴影 渐变 为嵌入图片和元素添加样式   内容布局  定位 水平布局 Flexbox   页面布局与网格  响应式Web设计与CSS  表单与数据表  变换、过滤与动画  高级特效  品控和流程">
 <meta name="keywords" content="精通CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="精通css第三版 学习笔记">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/07/07/精通CSS学习笔记/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
-<meta property="og:description" content="基础知识组织代码 可维护性  为将来的修改做过优化   HTML简史  CSS的初衷是把跟HTML混在一起的表现性标记提取出来，达到结构与表现层分离的目的 CSS给开发人员带来的好处 专用于控制视觉样式和布局的语言 同一网站中的样式有更高的复用率 关注点分离得到良好的代码结构 关注点分离：分成小块，松散结合。模块化     CSS版本 CSS1在1996年底成为W3C推荐标准，只包含字体、颜色、外">
+<meta property="og:description" content="基础知识  组织代码 创建结构化、语义化富HTML   添加样式  可见格式化模型  网页排版  漂亮的盒子  背景颜色 背景图片 背景图片语法 多重背景 边框与圆角 盒阴影 渐变 为嵌入图片和元素添加样式   内容布局  定位 水平布局 Flexbox   页面布局与网格  响应式Web设计与CSS  表单与数据表  变换、过滤与动画  高级特效  品控和流程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-07T08:46:02.912Z">
+<meta property="og:updated_time" content="2019-08-21T02:20:51.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="精通css第三版 学习笔记">
-<meta name="twitter:description" content="基础知识组织代码 可维护性  为将来的修改做过优化   HTML简史  CSS的初衷是把跟HTML混在一起的表现性标记提取出来，达到结构与表现层分离的目的 CSS给开发人员带来的好处 专用于控制视觉样式和布局的语言 同一网站中的样式有更高的复用率 关注点分离得到良好的代码结构 关注点分离：分成小块，松散结合。模块化     CSS版本 CSS1在1996年底成为W3C推荐标准，只包含字体、颜色、外">
+<meta name="twitter:description" content="基础知识  组织代码 创建结构化、语义化富HTML   添加样式  可见格式化模型  网页排版  漂亮的盒子  背景颜色 背景图片 背景图片语法 多重背景 边框与圆角 盒阴影 渐变 为嵌入图片和元素添加样式   内容布局  定位 水平布局 Flexbox   页面布局与网格  响应式Web设计与CSS  表单与数据表  变换、过滤与动画  高级特效  品控和流程">
 
 
 
@@ -427,12 +427,24 @@
                 
               
 
-              <time title="创建时间：2019-07-07 16:44:46 / 修改时间：16:46:02" itemprop="dateCreated datePublished" datetime="2019-07-07T16:44:46+08:00">2019-07-07</time>
+              <time title="创建时间：2019-07-07 16:44:46" itemprop="dateCreated datePublished" datetime="2019-07-07T16:44:46+08:00">2019-07-07</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-21 10:20:51" itemprop="dateModified" datetime="2019-08-21T10:20:51+08:00">2019-08-21</time>
               
             
           </span>
@@ -491,7 +503,51 @@
       
 
       
-        <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="组织代码"><a href="#组织代码" class="headerlink" title="组织代码"></a>组织代码</h2><ul>
+        <ul>
+<li><p><a href="#%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86">基础知识</a></p>
+<ul>
+<li><a href="#%e7%bb%84%e7%bb%87%e4%bb%a3%e7%a0%81">组织代码</a></li>
+<li><a href="#%e5%88%9b%e5%bb%ba%e7%bb%93%e6%9e%84%e5%8c%96%e8%af%ad%e4%b9%89%e5%8c%96%e5%af%8chtml">创建结构化、语义化富HTML</a></li>
+</ul>
+</li>
+<li><p><a href="#%e6%b7%bb%e5%8a%a0%e6%a0%b7%e5%bc%8f">添加样式</a></p>
+</li>
+<li><p><a href="#%e5%8f%af%e8%a7%81%e6%a0%bc%e5%bc%8f%e5%8c%96%e6%a8%a1%e5%9e%8b">可见格式化模型</a></p>
+</li>
+<li><p><a href="#%e7%bd%91%e9%a1%b5%e6%8e%92%e7%89%88">网页排版</a></p>
+</li>
+<li><p><a href="#%e6%bc%82%e4%ba%ae%e7%9a%84%e7%9b%92%e5%ad%90">漂亮的盒子</a></p>
+<ul>
+<li><a href="#%e8%83%8c%e6%99%af%e9%a2%9c%e8%89%b2">背景颜色</a></li>
+<li><a href="#%e8%83%8c%e6%99%af%e5%9b%be%e7%89%87">背景图片</a></li>
+<li><a href="#%e8%83%8c%e6%99%af%e5%9b%be%e7%89%87%e8%af%ad%e6%b3%95">背景图片语法</a></li>
+<li><a href="#%e5%a4%9a%e9%87%8d%e8%83%8c%e6%99%af">多重背景</a></li>
+<li><a href="#%e8%be%b9%e6%a1%86%e4%b8%8e%e5%9c%86%e8%a7%92">边框与圆角</a></li>
+<li><a href="#%e7%9b%92%e9%98%b4%e5%bd%b1">盒阴影</a></li>
+<li><a href="#%e6%b8%90%e5%8f%98">渐变</a></li>
+<li><a href="#%e4%b8%ba%e5%b5%8c%e5%85%a5%e5%9b%be%e7%89%87%e5%92%8c%e5%85%83%e7%b4%a0%e6%b7%bb%e5%8a%a0%e6%a0%b7%e5%bc%8f">为嵌入图片和元素添加样式</a></li>
+</ul>
+</li>
+<li><p><a href="#%e5%86%85%e5%ae%b9%e5%b8%83%e5%b1%80">内容布局</a></p>
+<ul>
+<li><a href="#%e5%ae%9a%e4%bd%8d">定位</a></li>
+<li><a href="#%e6%b0%b4%e5%b9%b3%e5%b8%83%e5%b1%80">水平布局</a></li>
+<li><a href="#flexbox">Flexbox</a></li>
+</ul>
+</li>
+<li><p><a href="#%e9%a1%b5%e9%9d%a2%e5%b8%83%e5%b1%80%e4%b8%8e%e7%bd%91%e6%a0%bc">页面布局与网格</a></p>
+</li>
+<li><p><a href="#%e5%93%8d%e5%ba%94%e5%bc%8fweb%e8%ae%be%e8%ae%a1%e4%b8%8ecss">响应式Web设计与CSS</a></p>
+</li>
+<li><p><a href="#%e8%a1%a8%e5%8d%95%e4%b8%8e%e6%95%b0%e6%8d%ae%e8%a1%a8">表单与数据表</a></p>
+</li>
+<li><p><a href="#%e5%8f%98%e6%8d%a2%e8%bf%87%e6%bb%a4%e4%b8%8e%e5%8a%a8%e7%94%bb">变换、过滤与动画</a></p>
+</li>
+<li><p><a href="#%e9%ab%98%e7%ba%a7%e7%89%b9%e6%95%88">高级特效</a></p>
+</li>
+<li><p><a href="#%e5%93%81%e6%8e%a7%e5%92%8c%e6%b5%81%e7%a8%8b">品控和流程</a></p>
+<a id="more"></a>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="组织代码"><a href="#组织代码" class="headerlink" title="组织代码"></a>组织代码</h2></li>
 <li><p>可维护性</p>
 <ul>
 <li>为将来的修改做过优化</li>
@@ -929,7 +985,7 @@
 <li>行内格式化上下文</li>
 <li>块级格式化上下文<ul>
 <li>规定页面必须自动包含突出的浮动元素，否则浮动元素的内容可能跑出滚动区域</li>
-<li>所有块级盒子的左边界默认与包含块的左边界对其(与文字顺序有关，默认从左往右)</li>
+<li>所有块级盒子的左边界默认与包含块的左边界对齐(与文字顺序有关，默认从左往右)</li>
 <li>有些规则允许元素建立自己内部的块级格式化上下文<ul>
 <li>display为inline-block或table-cell</li>
 <li>float不是none的元素</li>
@@ -1054,7 +1110,7 @@
 <li><p>文本特效</p>
 </li>
 </ul>
-<h1 id="漂亮的盒子"><a href="#漂亮的盒子" class="headerlink" title="漂亮的盒子"></a>漂亮的盒子</h1><h1 id="内容布局"><a href="#内容布局" class="headerlink" title="内容布局"></a>内容布局</h1><h1 id="页面布局与网格"><a href="#页面布局与网格" class="headerlink" title="页面布局与网格"></a>页面布局与网格</h1><h1 id="响应式Web设计与CSS"><a href="#响应式Web设计与CSS" class="headerlink" title="响应式Web设计与CSS"></a>响应式Web设计与CSS</h1><h1 id="表单与数据表"><a href="#表单与数据表" class="headerlink" title="表单与数据表"></a>表单与数据表</h1><h1 id="变换、过滤与动画"><a href="#变换、过滤与动画" class="headerlink" title="变换、过滤与动画"></a>变换、过滤与动画</h1><h1 id="高级特效"><a href="#高级特效" class="headerlink" title="高级特效"></a>高级特效</h1><h1 id="品控和流程"><a href="#品控和流程" class="headerlink" title="品控和流程"></a>品控和流程</h1>
+<h1 id="漂亮的盒子"><a href="#漂亮的盒子" class="headerlink" title="漂亮的盒子"></a>漂亮的盒子</h1><h2 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h2><h2 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h2><h2 id="背景图片语法"><a href="#背景图片语法" class="headerlink" title="背景图片语法"></a>背景图片语法</h2><h2 id="多重背景"><a href="#多重背景" class="headerlink" title="多重背景"></a>多重背景</h2><h2 id="边框与圆角"><a href="#边框与圆角" class="headerlink" title="边框与圆角"></a>边框与圆角</h2><h2 id="盒阴影"><a href="#盒阴影" class="headerlink" title="盒阴影"></a>盒阴影</h2><h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><h2 id="为嵌入图片和元素添加样式"><a href="#为嵌入图片和元素添加样式" class="headerlink" title="为嵌入图片和元素添加样式"></a>为嵌入图片和元素添加样式</h2><h1 id="内容布局"><a href="#内容布局" class="headerlink" title="内容布局"></a>内容布局</h1><h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><h2 id="水平布局"><a href="#水平布局" class="headerlink" title="水平布局"></a>水平布局</h2><h2 id="Flexbox"><a href="#Flexbox" class="headerlink" title="Flexbox"></a>Flexbox</h2><h1 id="页面布局与网格"><a href="#页面布局与网格" class="headerlink" title="页面布局与网格"></a>页面布局与网格</h1><h1 id="响应式Web设计与CSS"><a href="#响应式Web设计与CSS" class="headerlink" title="响应式Web设计与CSS"></a>响应式Web设计与CSS</h1><h1 id="表单与数据表"><a href="#表单与数据表" class="headerlink" title="表单与数据表"></a>表单与数据表</h1><h1 id="变换、过滤与动画"><a href="#变换、过滤与动画" class="headerlink" title="变换、过滤与动画"></a>变换、过滤与动画</h1><h1 id="高级特效"><a href="#高级特效" class="headerlink" title="高级特效"></a>高级特效</h1><h1 id="品控和流程"><a href="#品控和流程" class="headerlink" title="品控和流程"></a>品控和流程</h1>
       
     </div>
 
@@ -1457,7 +1513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组织代码"><span class="nav-number">1.1.</span> <span class="nav-text">组织代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建结构化、语义化富HTML"><span class="nav-number">1.2.</span> <span class="nav-text">创建结构化、语义化富HTML</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加样式"><span class="nav-number">2.</span> <span class="nav-text">添加样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可见格式化模型"><span class="nav-number">3.</span> <span class="nav-text">可见格式化模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网页排版"><span class="nav-number">4.</span> <span class="nav-text">网页排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#漂亮的盒子"><span class="nav-number">5.</span> <span class="nav-text">漂亮的盒子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容布局"><span class="nav-number">6.</span> <span class="nav-text">内容布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#页面布局与网格"><span class="nav-number">7.</span> <span class="nav-text">页面布局与网格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式Web设计与CSS"><span class="nav-number">8.</span> <span class="nav-text">响应式Web设计与CSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表单与数据表"><span class="nav-number">9.</span> <span class="nav-text">表单与数据表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变换、过滤与动画"><span class="nav-number">10.</span> <span class="nav-text">变换、过滤与动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级特效"><span class="nav-number">11.</span> <span class="nav-text">高级特效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#品控和流程"><span class="nav-number">12.</span> <span class="nav-text">品控和流程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组织代码"><span class="nav-number">1.1.</span> <span class="nav-text">组织代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建结构化、语义化富HTML"><span class="nav-number">1.2.</span> <span class="nav-text">创建结构化、语义化富HTML</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加样式"><span class="nav-number">2.</span> <span class="nav-text">添加样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可见格式化模型"><span class="nav-number">3.</span> <span class="nav-text">可见格式化模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网页排版"><span class="nav-number">4.</span> <span class="nav-text">网页排版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#漂亮的盒子"><span class="nav-number">5.</span> <span class="nav-text">漂亮的盒子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景颜色"><span class="nav-number">5.1.</span> <span class="nav-text">背景颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片"><span class="nav-number">5.2.</span> <span class="nav-text">背景图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景图片语法"><span class="nav-number">5.3.</span> <span class="nav-text">背景图片语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多重背景"><span class="nav-number">5.4.</span> <span class="nav-text">多重背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边框与圆角"><span class="nav-number">5.5.</span> <span class="nav-text">边框与圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盒阴影"><span class="nav-number">5.6.</span> <span class="nav-text">盒阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渐变"><span class="nav-number">5.7.</span> <span class="nav-text">渐变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为嵌入图片和元素添加样式"><span class="nav-number">5.8.</span> <span class="nav-text">为嵌入图片和元素添加样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容布局"><span class="nav-number">6.</span> <span class="nav-text">内容布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定位"><span class="nav-number">6.1.</span> <span class="nav-text">定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平布局"><span class="nav-number">6.2.</span> <span class="nav-text">水平布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flexbox"><span class="nav-number">6.3.</span> <span class="nav-text">Flexbox</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#页面布局与网格"><span class="nav-number">7.</span> <span class="nav-text">页面布局与网格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式Web设计与CSS"><span class="nav-number">8.</span> <span class="nav-text">响应式Web设计与CSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表单与数据表"><span class="nav-number">9.</span> <span class="nav-text">表单与数据表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变换、过滤与动画"><span class="nav-number">10.</span> <span class="nav-text">变换、过滤与动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级特效"><span class="nav-number">11.</span> <span class="nav-text">高级特效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#品控和流程"><span class="nav-number">12.</span> <span class="nav-text">品控和流程</span></a></li></ol></div>
             
 
           </div>
