@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
 <meta property="og:description" content="事件循环什么是事件循环一种解决JavaScript单线程运行时不会阻塞的一种机制，是异步的原理，浏览器环境和Node环境的事件循环不太一样。 栈和队列 栈是只能在一端（表尾）进行插入或删除的线性表，以先进后出的方式存储数据 队列是一种在一端(表头)删除，另一端（表尾）插入操作的线性表，以先进先出的方式存储数据任务队列和调用栈 任务队列是用来处理异步任务的，分为两种宏任务队列和微任务队列  Java">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-27T14:05:39.993Z">
+<meta property="og:updated_time" content="2019-08-28T01:09:54.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript事件循环和任务队列到底是怎么回事">
 <meta name="twitter:description" content="事件循环什么是事件循环一种解决JavaScript单线程运行时不会阻塞的一种机制，是异步的原理，浏览器环境和Node环境的事件循环不太一样。 栈和队列 栈是只能在一端（表尾）进行插入或删除的线性表，以先进后出的方式存储数据 队列是一种在一端(表头)删除，另一端（表尾）插入操作的线性表，以先进先出的方式存储数据任务队列和调用栈 任务队列是用来处理异步任务的，分为两种宏任务队列和微任务队列  Java">
@@ -303,7 +303,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">40</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">41</span></a>
 
   </li>
 
@@ -444,7 +444,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-27 22:05:39" itemprop="dateModified" datetime="2019-08-27T22:05:39+08:00">2019-08-27</time>
+                <time title="修改时间：2019-08-28 09:09:54" itemprop="dateModified" datetime="2019-08-28T09:09:54+08:00">2019-08-28</time>
               
             
           </span>
@@ -532,7 +532,7 @@
 <li>等待主线程空闲时间（调用栈被清空），将被读取到栈内等待主线程的执行</li>
 </ol>
 <h2 id="事件循环的进程模型"><a href="#事件循环的进程模型" class="headerlink" title="事件循环的进程模型"></a>事件循环的进程模型</h2><ol>
-<li>选择当前要执行的任务队列，选择任务队列中最先进入的任务，如果任务队列为空，则执行跳转到微任务的执行步骤</li>
+<li>选择当前要执行的宏任务队列，选择宏任务队列中最先进入的宏任务，如果任务队列为空，则执行跳转到微任务的执行步骤</li>
 <li>将事件循环中的任务设置为已选择任务</li>
 <li>执行任务</li>
 <li>将事件循环中当前运行任务设置为空</li>
@@ -540,7 +540,16 @@
 <li>更新界面渲染</li>
 <li>返回第一步</li>
 </ol>
-
+<h2 id="微任务的执行步骤"><a href="#微任务的执行步骤" class="headerlink" title="微任务的执行步骤"></a>微任务的执行步骤</h2><ol>
+<li>设置微任务检查点标志为true</li>
+<li>当事件循环微任务执行不为空时，选择一个最先进入微任务队列的微任务</li>
+<li>将事件循环的微任务设置为已选择的微任务</li>
+<li>运行microtask</li>
+<li>将已经执行完成的microtask为空，移除微任务队列中的微任务</li>
+<li>清理IndexDB事务</li>
+<li>设置进入微任务检查点的标志为false</li>
+</ol>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -707,7 +716,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -945,7 +954,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件循环"><span class="nav-number">1.</span> <span class="nav-text">事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是事件循环"><span class="nav-number">1.1.</span> <span class="nav-text">什么是事件循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈和队列"><span class="nav-number">1.2.</span> <span class="nav-text">栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务队列和调用栈"><span class="nav-number">1.2.1.</span> <span class="nav-text">任务队列和调用栈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript中的任务"><span class="nav-number">2.</span> <span class="nav-text">JavaScript中的任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#宏任务"><span class="nav-number">2.1.</span> <span class="nav-text">宏任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微任务"><span class="nav-number">2.2.</span> <span class="nav-text">微任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器中的事件循环"><span class="nav-number">3.</span> <span class="nav-text">浏览器中的事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用栈"><span class="nav-number">3.1.</span> <span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步任务"><span class="nav-number">3.2.</span> <span class="nav-text">同步任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步任务"><span class="nav-number">3.3.</span> <span class="nav-text">异步任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环的进程模型"><span class="nav-number">3.4.</span> <span class="nav-text">事件循环的进程模型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件循环"><span class="nav-number">1.</span> <span class="nav-text">事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是事件循环"><span class="nav-number">1.1.</span> <span class="nav-text">什么是事件循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈和队列"><span class="nav-number">1.2.</span> <span class="nav-text">栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务队列和调用栈"><span class="nav-number">1.2.1.</span> <span class="nav-text">任务队列和调用栈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript中的任务"><span class="nav-number">2.</span> <span class="nav-text">JavaScript中的任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#宏任务"><span class="nav-number">2.1.</span> <span class="nav-text">宏任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微任务"><span class="nav-number">2.2.</span> <span class="nav-text">微任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器中的事件循环"><span class="nav-number">3.</span> <span class="nav-text">浏览器中的事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用栈"><span class="nav-number">3.1.</span> <span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步任务"><span class="nav-number">3.2.</span> <span class="nav-text">同步任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步任务"><span class="nav-number">3.3.</span> <span class="nav-text">异步任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环的进程模型"><span class="nav-number">3.4.</span> <span class="nav-text">事件循环的进程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微任务的执行步骤"><span class="nav-number">3.5.</span> <span class="nav-text">微任务的执行步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">3.6.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></div>
             
 
           </div>
