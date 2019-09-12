@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
 <meta property="og:description" content="CPU的应用场景 CPU需要很强的通用性来处理各种不同的数据类型 逻辑判断会引入大量的分支跳转和中断的处理  GPU的应用场景 面对类型高度统一的、相互无依赖的大规模数据和不需要被打断的纯净的计算环境。  GPU架构特点 采用数量众多的计算单元ALU和超长的流水线 且使用非常简单的控制逻辑Control，省去了Cache。  CPU架构特点 Cache占据了大量空间 复杂的控制逻辑和诸多优化电路">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-11T14:32:28.408Z">
+<meta property="og:updated_time" content="2019-09-12T08:22:44.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CPU和GPU">
 <meta name="twitter:description" content="CPU的应用场景 CPU需要很强的通用性来处理各种不同的数据类型 逻辑判断会引入大量的分支跳转和中断的处理  GPU的应用场景 面对类型高度统一的、相互无依赖的大规模数据和不需要被打断的纯净的计算环境。  GPU架构特点 采用数量众多的计算单元ALU和超长的流水线 且使用非常简单的控制逻辑Control，省去了Cache。  CPU架构特点 Cache占据了大量空间 复杂的控制逻辑和诸多优化电路">
@@ -427,12 +427,24 @@
                 
               
 
-              <time title="创建时间：2019-09-11 21:28:46 / 修改时间：22:32:28" itemprop="dateCreated datePublished" datetime="2019-09-11T21:28:46+08:00">2019-09-11</time>
+              <time title="创建时间：2019-09-11 21:28:46" itemprop="dateCreated datePublished" datetime="2019-09-11T21:28:46+08:00">2019-09-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-12 16:22:44" itemprop="dateModified" datetime="2019-09-12T16:22:44+08:00">2019-09-12</time>
               
             
           </span>
@@ -541,7 +553,11 @@
 <td>以同步方式，在同一时间内执行同一条指令</td>
 </tr>
 </tbody></table>
-<h1 id="CPU基于低延时设计"><a href="#CPU基于低延时设计" class="headerlink" title="CPU基于低延时设计"></a>CPU基于低延时设计</h1><h1 id="GPU基于大吞吐量设计"><a href="#GPU基于大吞吐量设计" class="headerlink" title="GPU基于大吞吐量设计"></a>GPU基于大吞吐量设计</h1><h1 id="什么类型的程序适合在GPU上运行"><a href="#什么类型的程序适合在GPU上运行" class="headerlink" title="什么类型的程序适合在GPU上运行"></a>什么类型的程序适合在GPU上运行</h1><ol>
+<h1 id="CPU基于低延时设计"><a href="#CPU基于低延时设计" class="headerlink" title="CPU基于低延时设计"></a>CPU基于低延时设计</h1><h1 id="GPU基于大吞吐量设计"><a href="#GPU基于大吞吐量设计" class="headerlink" title="GPU基于大吞吐量设计"></a>GPU基于大吞吐量设计</h1><ul>
+<li>很多的ALU(计算单元)和很少的Cache</li>
+<li>缓存的目的是为线程提高服务，而不是保存后面需要访问的数据的<h1 id="什么类型的程序适合在GPU上运行"><a href="#什么类型的程序适合在GPU上运行" class="headerlink" title="什么类型的程序适合在GPU上运行"></a>什么类型的程序适合在GPU上运行</h1></li>
+</ul>
+<ol>
 <li>计算密集型程序。</li>
 <li>易于并行的程序。GPU是一种SIMD架构，有成百上千个核，每个核在同一时间内最好做相同的事情。</li>
 </ol>
