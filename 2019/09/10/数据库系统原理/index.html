@@ -100,17 +100,17 @@
 
 
 
-  <meta name="description" content="事务什么是事务事务指满足ACID特性的一组操作，可以通过Commit提交一个事务，也可以通过Rollback进行回滚。 ACID 原子性事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚 一致性 隔离性事务的所有操作在最终修改提交以前，对其他事务是不可见的 持久性  AUTOCOMMIT">
+  <meta name="description" content="事务什么是事务事务指满足ACID特性的一组操作，可以通过Commit提交一个事务，也可以通过Rollback进行回滚。 ACID 原子性 事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚   一致性 数据库在事务执行前后都保持一致性状态，所有事务对一个数据的读取结果都是相同的   隔离性 事务的所有操作在最终修改提交以前，对其他事务是不可见的   持久性 一旦事务提交，其所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库系统原理">
 <meta property="og:url" content="https://leezhimeng.com/blog/2019/09/10/数据库系统原理/index.html">
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
-<meta property="og:description" content="事务什么是事务事务指满足ACID特性的一组操作，可以通过Commit提交一个事务，也可以通过Rollback进行回滚。 ACID 原子性事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚 一致性 隔离性事务的所有操作在最终修改提交以前，对其他事务是不可见的 持久性  AUTOCOMMIT">
+<meta property="og:description" content="事务什么是事务事务指满足ACID特性的一组操作，可以通过Commit提交一个事务，也可以通过Rollback进行回滚。 ACID 原子性 事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚   一致性 数据库在事务执行前后都保持一致性状态，所有事务对一个数据的读取结果都是相同的   隔离性 事务的所有操作在最终修改提交以前，对其他事务是不可见的   持久性 一旦事务提交，其所">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-11T13:28:41.055Z">
+<meta property="og:updated_time" content="2019-09-17T07:07:25.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统原理">
-<meta name="twitter:description" content="事务什么是事务事务指满足ACID特性的一组操作，可以通过Commit提交一个事务，也可以通过Rollback进行回滚。 ACID 原子性事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚 一致性 隔离性事务的所有操作在最终修改提交以前，对其他事务是不可见的 持久性  AUTOCOMMIT">
+<meta name="twitter:description" content="事务什么是事务事务指满足ACID特性的一组操作，可以通过Commit提交一个事务，也可以通过Rollback进行回滚。 ACID 原子性 事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚   一致性 数据库在事务执行前后都保持一致性状态，所有事务对一个数据的读取结果都是相同的   隔离性 事务的所有操作在最终修改提交以前，对其他事务是不可见的   持久性 一旦事务提交，其所">
 
 
 
@@ -443,7 +443,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-11 21:28:41" itemprop="dateModified" datetime="2019-09-11T21:28:41+08:00">2019-09-11</time>
+                <time title="修改时间：2019-09-17 15:07:25" itemprop="dateModified" datetime="2019-09-17T15:07:25+08:00">2019-09-17</time>
               
             
           </span>
@@ -486,12 +486,85 @@
       
         <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h2 id="什么是事务"><a href="#什么是事务" class="headerlink" title="什么是事务"></a>什么是事务</h2><p>事务指满足ACID特性的一组操作，可以通过Commit提交一个事务，也可以通过Rollback进行回滚。</p>
 <h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><ul>
-<li>原子性<br>事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚</li>
-<li>一致性</li>
-<li>隔离性<br>事务的所有操作在最终修改提交以前，对其他事务是不可见的</li>
-<li>持久性</li>
+<li>原子性<blockquote>
+<p>事务是不可分割的最小单元，要么事务所有操作全部提交成功，要么全部失败回滚</p>
+</blockquote>
+</li>
+<li>一致性<blockquote>
+<p>数据库在事务执行前后都保持一致性状态，所有事务对一个数据的读取结果都是相同的</p>
+</blockquote>
+</li>
+<li>隔离性<blockquote>
+<p>事务的所有操作在最终修改提交以前，对其他事务是不可见的</p>
+</blockquote>
+</li>
+<li>持久性<blockquote>
+<p>一旦事务提交，其所作的修改将永远保存到数据库中</p>
+</blockquote>
+</li>
 </ul>
-<h2 id="AUTOCOMMIT"><a href="#AUTOCOMMIT" class="headerlink" title="AUTOCOMMIT"></a>AUTOCOMMIT</h2>
+<h2 id="事务特性的关系"><a href="#事务特性的关系" class="headerlink" title="事务特性的关系"></a>事务特性的关系</h2><ul>
+<li>只有满足<strong>一致性</strong>，事务的结果才是正确的</li>
+<li><strong>无并发</strong>情况下，事务只要满足<strong>原子性</strong>就能满足一致性</li>
+<li><strong>并发</strong>情况下，多个事务并行执行，事务不仅要满足原子性，还需要满足<strong>隔离性</strong>，才能满足一致性</li>
+<li>满足<strong>持久性</strong>是为了能应对数据库崩溃的情况</li>
+</ul>
+<h2 id="AUTOCOMMIT"><a href="#AUTOCOMMIT" class="headerlink" title="AUTOCOMMIT"></a>AUTOCOMMIT</h2><blockquote>
+<p>MySQL是自动提交模式，不显示使用START TRANSACTION（开始事务）语句来开始一个事务，每个查询都会被当做一个事务自动提交。</p>
+</blockquote>
+<h1 id="并发一致性问题"><a href="#并发一致性问题" class="headerlink" title="并发一致性问题"></a>并发一致性问题</h1><h2 id="丢失修改"><a href="#丢失修改" class="headerlink" title="丢失修改"></a>丢失修改</h2><blockquote>
+<p>两个事务对一个数据进行修改，后修改者会覆盖前者的修改</p>
+</blockquote>
+<h2 id="读脏数据"><a href="#读脏数据" class="headerlink" title="读脏数据"></a>读脏数据</h2><blockquote>
+<p>T2事务读取T1事务修改后的数据，然后T1撤销了修改，T2读取的数据就是脏数据</p>
+</blockquote>
+<h2 id="不可重复读取"><a href="#不可重复读取" class="headerlink" title="不可重复读取"></a>不可重复读取</h2><blockquote>
+<p>T2事务在T1事务修改数据前后两次读取数据，两次读取的结果不同</p>
+</blockquote>
+<h2 id="幻影读"><a href="#幻影读" class="headerlink" title="幻影读"></a>幻影读</h2><h1 id="封锁"><a href="#封锁" class="headerlink" title="封锁"></a>封锁</h1><h2 id="封锁粒度"><a href="#封锁粒度" class="headerlink" title="封锁粒度"></a>封锁粒度</h2><ul>
+<li>行级锁</li>
+<li>表级锁</li>
+</ul>
+<h2 id="封锁类型"><a href="#封锁类型" class="headerlink" title="封锁类型"></a>封锁类型</h2><ul>
+<li>读写锁<ul>
+<li>排它锁，写锁、X锁<ul>
+<li>可以进行读取和更新</li>
+<li>其它事务不能对加了X锁的事务加任何锁</li>
+</ul>
+</li>
+<li>共享锁，读锁、S锁<ul>
+<li>可以进行读取操作，不能进行更新操作</li>
+<li>其它事务不能对加了S锁的事务加X锁</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>意向锁</li>
+</ul>
+<h2 id="封锁协议"><a href="#封锁协议" class="headerlink" title="封锁协议"></a>封锁协议</h2><ul>
+<li>三级封锁协议</li>
+<li>两段锁协议</li>
+</ul>
+<h2 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h2><h2 id="多版本并发控制"><a href="#多版本并发控制" class="headerlink" title="多版本并发控制"></a>多版本并发控制</h2><h2 id="关系数据库设计理论"><a href="#关系数据库设计理论" class="headerlink" title="关系数据库设计理论"></a>关系数据库设计理论</h2><h3 id="数据依赖"><a href="#数据依赖" class="headerlink" title="数据依赖"></a>数据依赖</h3><ul>
+<li>A-&gt;B</li>
+<li>键码</li>
+<li>完全函数依赖</li>
+<li>传递函数依赖</li>
+</ul>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><ol>
+<li>冗余数据 同一个id出现两次</li>
+<li>修改异常 数据没联动起来</li>
+<li>删除异常 删除耦合度较大的数据，被造成信息丢失</li>
+<li>插入异常 如果插入一个学生信息，这个学生还没报名，就无法插入</li>
+</ol>
+<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><blockquote>
+<p>范式是为了解决上面提到的四种异常。<br>高级别范式依赖于低级别范式，1NF是最低级别</p>
+</blockquote>
+<ol>
+<li>1NF属性不可分</li>
+<li>2NF每个非主属性完全依赖于键码，通过分解来满足<h2 id="ER图"><a href="#ER图" class="headerlink" title="ER图"></a>ER图</h2></li>
+</ol>
+
       
     </div>
 
@@ -902,7 +975,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是事务"><span class="nav-number">1.1.</span> <span class="nav-text">什么是事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-number">1.2.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUTOCOMMIT"><span class="nav-number">1.3.</span> <span class="nav-text">AUTOCOMMIT</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是事务"><span class="nav-number">1.1.</span> <span class="nav-text">什么是事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-number">1.2.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务特性的关系"><span class="nav-number">1.3.</span> <span class="nav-text">事务特性的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUTOCOMMIT"><span class="nav-number">1.4.</span> <span class="nav-text">AUTOCOMMIT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发一致性问题"><span class="nav-number">2.</span> <span class="nav-text">并发一致性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#丢失修改"><span class="nav-number">2.1.</span> <span class="nav-text">丢失修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读脏数据"><span class="nav-number">2.2.</span> <span class="nav-text">读脏数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可重复读取"><span class="nav-number">2.3.</span> <span class="nav-text">不可重复读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#幻影读"><span class="nav-number">2.4.</span> <span class="nav-text">幻影读</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封锁"><span class="nav-number">3.</span> <span class="nav-text">封锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁粒度"><span class="nav-number">3.1.</span> <span class="nav-text">封锁粒度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁类型"><span class="nav-number">3.2.</span> <span class="nav-text">封锁类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封锁协议"><span class="nav-number">3.3.</span> <span class="nav-text">封锁协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隔离级别"><span class="nav-number">3.4.</span> <span class="nav-text">隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多版本并发控制"><span class="nav-number">3.5.</span> <span class="nav-text">多版本并发控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系数据库设计理论"><span class="nav-number">3.6.</span> <span class="nav-text">关系数据库设计理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据依赖"><span class="nav-number">3.6.1.</span> <span class="nav-text">数据依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常"><span class="nav-number">3.6.2.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范式"><span class="nav-number">3.6.3.</span> <span class="nav-text">范式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ER图"><span class="nav-number">3.7.</span> <span class="nav-text">ER图</span></a></li></ol></li></ol></div>
             
 
           </div>
