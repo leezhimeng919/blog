@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Lee Jimmy&#39;s Blog">
 <meta property="og:description" content="JS高程 1.JavaScript简介 JavaScript简史 JavaScript实现 JavaScript版本   2.在HTML中使用JavaScript script元素 嵌入代码与外部文件 文档模式 noscript元素   3.基础概念 语法 关键字和保留字 变量 数据类型 操作符 语句 函数   4.变量、作用域和内存问题 基本类型和引用类型的值 执行环境及作用域 垃圾收集">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-23T00:57:48.637Z">
+<meta property="og:updated_time" content="2019-09-24T04:05:03.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript知识点大全">
 <meta name="twitter:description" content="JS高程 1.JavaScript简介 JavaScript简史 JavaScript实现 JavaScript版本   2.在HTML中使用JavaScript script元素 嵌入代码与外部文件 文档模式 noscript元素   3.基础概念 语法 关键字和保留字 变量 数据类型 操作符 语句 函数   4.变量、作用域和内存问题 基本类型和引用类型的值 执行环境及作用域 垃圾收集">
@@ -444,7 +444,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-23 08:57:48" itemprop="dateModified" datetime="2019-08-23T08:57:48+08:00">2019-08-23</time>
+                <time title="修改时间：2019-09-24 12:05:03" itemprop="dateModified" datetime="2019-09-24T12:05:03+08:00">2019-09-24</time>
               
             
           </span>
@@ -2891,18 +2891,24 @@
 </li>
 <li><p>创建已处理的Promise</p>
 <ul>
-<li><p>为什么要创建已处理的Promise</p>
-<ul>
+<li>为什么要创建已处理的Promise<ul>
 <li>如果你还不知道给用Promise来表示什么值的时候，可以用new创建一个未处理的Promise</li>
 <li>如果你知道要用Promise来表示什么值的时候，再大张旗鼓的new一个Promise，在Promise中加入执行器函数有点多余，所以这时候需要创建处于settled状态的Promise</li>
 </ul>
 </li>
-<li><p>Promise.resolve()</p>
+</ul>
+</li>
+</ul>
 <ul>
+<li>Promise.resolve()<ul>
 <li>只接受一个参数并返回一个完成状态的Promise<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.resolve(<span class="number">42</span>)</span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(content) <span class="comment">//42</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
 </li>
 </ul>
 </li>
+</ul>
+<ul>
 <li><p>Promise.reject()</p>
 <ul>
 <li><p>只接受一个参数并返回已拒绝状态的Promise</p>
@@ -2917,13 +2923,13 @@
 <li><p>非Promise的Thenable对象</p>
 <ul>
 <li>拥有一个接受resolve和reject这两个参数的方法并且这个方法名叫then方法的普通对象就是非Promise的Thenable对象<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.使用Promise.resolve创建基于Thenable的已完成Promise</span></span><br><span class="line"><span class="keyword">let</span> thenable = &#123;</span><br><span class="line">    then:<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        resolve(<span class="number">42</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Promise.resolve调用的是thenable.then()，返回的是一个pending状态Promise</span></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(thenable)</span><br><span class="line">p1.then(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//此时p1是一个pending状态Promise对象</span></span><br><span class="line">    <span class="built_in">console</span>.log(c) <span class="comment">//42</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.使用Promise.resolve创建基于Thenable的已拒绝Promise</span></span><br><span class="line"><span class="keyword">let</span> thenable = &#123;</span><br><span class="line">    then:<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        reject(<span class="number">42</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Promise.resolve调用的是thenable.then()，返回的是一个pending状态Promise</span></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(thenable)</span><br><span class="line">p1.catch(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c) <span class="comment">//42</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.使用Promise.reject创建基于Thenable的已拒绝Promise</span></span><br><span class="line"><span class="keyword">let</span> thenable = &#123;</span><br><span class="line">    then:<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        reject(<span class="number">42</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Promise.reject会返回一个已拒绝状态的Promise对象</span></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.reject(thenable)</span><br><span class="line">p1.catch(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c) <span class="comment">//thenable对象</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.使用Promise.reject创建基于Thenable的已完成Promise</span></span><br><span class="line"><span class="keyword">let</span> thenable = &#123;</span><br><span class="line">    then:<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        resolve(<span class="number">42</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Promise.reject会返回一个已拒绝状态的Promise对象</span></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.reject(thenable)</span><br><span class="line">p1.then(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//由于p1此时已经是一个已拒绝状态的Promise对象</span></span><br><span class="line">    <span class="built_in">console</span>.log(c) <span class="comment">//UnHandlePromiseRejectionWarning</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>执行器错误</p>
 <ul>
+<li>执行器错误<ul>
 <li>如果执行器内部抛出错误，则Promise的拒绝处理程序就会自动被调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'I am a Problem'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">promise.catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err.message) <span class="comment">//I am a Problem</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//原因是每个执行器中都隐藏了一个try-catch语句</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error'</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span>(ex) &#123;</span><br><span class="line">        reject(ex)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 </li>
