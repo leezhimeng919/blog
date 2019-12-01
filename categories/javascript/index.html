@@ -820,8 +820,7 @@
 
     
       <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        <span claare-alt" aria-hidden="true"></i>
         </span>
       </div>
     
@@ -993,7 +992,7 @@
                 var searchTextCount = 0;
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var content = data.content.trim().replace(/<[^>]+>/g,""a.content.trim().replace(/<[^>]+>/g,"");
                 
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
@@ -1002,7 +1001,7 @@
                 // only match articles with not empty titles
                 if(title != '') {
                   keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
+         d, text, caseSensitive) {
                       var wordLen = word.length;
                       if (wordLen === 0) {
                         return [];
@@ -1092,14 +1091,13 @@
                     var position = item.position;
                     var word = item.word;
                     // cut out 100 characters
-                    var start = position - 20;
+                    var start = position - 20             var start = position - 20;
                     var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
                     if (end < position + word.length) {
-                      end = position + word.length;
-                    }
+                      end         }
                     if(end > content.length){
                       end = content.length;
                     }
@@ -1283,6 +1281,20 @@
 
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
 
   
 
